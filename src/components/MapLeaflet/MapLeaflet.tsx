@@ -24,9 +24,9 @@ export default function MapLeaflet({ notamCoords, fligthCoords, firCoords, clear
 	const getRecenter = () => {
 		if (notamCoords.length > 0) return notamCoords[0];
 		if (fligthCoords.length > 0) return fligthCoords;
-		if (firCoords.center.length > 0) return [{ lat: firCoords.center[0], lng: firCoords.center[1] }]
-		return []
-	}
+		if (firCoords.center.length > 0) return [{ lat: firCoords.center[0], lng: firCoords.center[1] }];
+		return [];
+	};
 
 	return (
 		<div className={styles.map}>

@@ -14,7 +14,7 @@ const firInitial = {
 	center: [],
 	country: '',
 	airports: 0
-}
+};
 
 function App() {
 	const [notamCoords, setNotamCoords] = useState<ICoordinate[][]>([]);
@@ -25,7 +25,7 @@ function App() {
 		setNotamCoords([]);
 		setFligthCoords([]);
 		setFirCoords(firInitial);
-	}
+	};
 
 	return (
 		<main className='main'>

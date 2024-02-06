@@ -15,7 +15,7 @@ export interface IFir {
 //=========================================================================================================================
 
 function TabFir({ setFirCoords }: TabFirProps) {
-	const [selectedFir, setSelectedFir] = React.useState<Omit<IFir, "area">>();
+	const [selectedFir, setSelectedFir] = React.useState<Omit<IFir, 'area'>>();
 
 	const onClickFir = (icao: string) => {
 		const findItem: IFir | undefined = dataFIR.find(obj => obj.icao === icao);
@@ -24,7 +24,7 @@ function TabFir({ setFirCoords }: TabFirProps) {
 			const { area, ...selectedData } = findItem;
 			setSelectedFir(selectedData);
 		}
-	}
+	};
 
 	return (
 		<div className={styles.box}>

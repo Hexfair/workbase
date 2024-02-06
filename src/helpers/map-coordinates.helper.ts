@@ -9,30 +9,30 @@ export const transformCoordinates = (d: number, m: number, s: number, side: Side
 
 export const calcTepmlateCoordinates = (item: string) => {
 	switch (item.length) {
-		case 10:
-			return item.slice(0, 4) + '00.00' + item[4] + '0' + item.slice(5, 9) + '00.00' + item[9];
-		case 11:
-			return item.slice(0, 4) + '00.00' + item[4] + item.slice(5, 10) + '00.00' + item[10];
-		case 12:
-			return item.slice(0, 4) + '00.00' + item[4] + item.slice(5, 11) + '0.00' + item[11];
-		case 13:
-			return item.slice(0, 6) + '.00' + item[6] + item.slice(7, 12) + '00.00' + item[12];
-		case 14:
-			return item.slice(0, 6) + '.00' + item[6] + '0' + item.slice(7, 13) + '.00' + item[13];
-		case 15:
-			return item.slice(0, 6) + '.00' + item[6] + item.slice(7, 14) + '.00' + item[14];
-		case 16:
-			return item.slice(0, 6) + '.' + item[6] + '0' + item[7] + '0' + item.slice(8, 14) + '.' + item[14] + '0' + item[15];
-		case 17:
-			return item.slice(0, 6) + '.' + item[6] + '0' + item[7] + item.slice(8, 15) + '.' + item[15] + '0' + item[16];
-		case 18:
-			return item.slice(0, 8) + '0' + item[8] + '0' + item.slice(9, 17) + '0' + item[17];
-		case 19:
-			return item.slice(0, 8) + '0' + item[8] + item.slice(9, 18) + '0' + item[18];
-		case 20:
-			return item.slice(0, 10) + '0' + item.slice(10);
-		default:
-			return item;
+	case 10:
+		return item.slice(0, 4) + '00.00' + item[4] + '0' + item.slice(5, 9) + '00.00' + item[9];
+	case 11:
+		return item.slice(0, 4) + '00.00' + item[4] + item.slice(5, 10) + '00.00' + item[10];
+	case 12:
+		return item.slice(0, 4) + '00.00' + item[4] + item.slice(5, 11) + '0.00' + item[11];
+	case 13:
+		return item.slice(0, 6) + '.00' + item[6] + item.slice(7, 12) + '00.00' + item[12];
+	case 14:
+		return item.slice(0, 6) + '.00' + item[6] + '0' + item.slice(7, 13) + '.00' + item[13];
+	case 15:
+		return item.slice(0, 6) + '.00' + item[6] + item.slice(7, 14) + '.00' + item[14];
+	case 16:
+		return item.slice(0, 6) + '.' + item[6] + '0' + item[7] + '0' + item.slice(8, 14) + '.' + item[14] + '0' + item[15];
+	case 17:
+		return item.slice(0, 6) + '.' + item[6] + '0' + item[7] + item.slice(8, 15) + '.' + item[15] + '0' + item[16];
+	case 18:
+		return item.slice(0, 8) + '0' + item[8] + '0' + item.slice(9, 17) + '0' + item[17];
+	case 19:
+		return item.slice(0, 8) + '0' + item[8] + item.slice(9, 18) + '0' + item[18];
+	case 20:
+		return item.slice(0, 10) + '0' + item.slice(10);
+	default:
+		return item;
 	}
 };
 

@@ -35,7 +35,7 @@ function LeafletRuler() {
 		map.on('polylinemeasure:remove', debugevent);
 
 		return () => polylineMeasure.remove();
-	}, [map]);
+	}, [map, options]);
 
 	return null;
 }
