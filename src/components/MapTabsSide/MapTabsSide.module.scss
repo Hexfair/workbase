@@ -1,0 +1,33 @@
+.MapTabsSide {
+	display: flex;
+	flex-direction: column;
+	height: 95vh;
+}
+
+.tabs {
+	display: flex;
+	gap: 5px;
+	width: 100%;
+	height: 40px;
+}
+
+.tab {
+	width: 100%;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	font-size: 16px;
+	cursor: pointer;
+
+	&.active {
+		background-color: var(--white);
+		color: var(--primary-dark);
+		font-weight: 700;
+	}
+}
+
+.content {
+	padding: 20px;
+	background-color: var(--white);
+	height: calc(95vh - 40px);
+	overflow: auto;
+}

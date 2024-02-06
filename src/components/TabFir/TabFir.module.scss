@@ -1,0 +1,76 @@
+.box {
+	margin: 0 auto;
+}
+
+.head {
+	width: 100%;
+	display: flex;
+	text-align: center;
+	margin-bottom: 8px;
+}
+
+.body {
+	font-size: 18px;
+	height: 55vh;
+	overflow-y: scroll;
+}
+
+.item {
+	width: 100%;
+	display: flex;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	cursor: pointer;
+	transition: all 0.15s ease 0s;
+	color: var(--primary-text);
+
+	&:hover {
+		background-color: var(--hover-fir);
+	}
+
+	&.select {
+		background-color: var(--select-fir);
+	}
+}
+
+.icao {
+	width: 80px;
+
+	&.td {
+		text-align: center;
+	}
+}
+
+.name {
+	width: 230px;
+
+	&.td {
+		padding-left: 10px;
+	}
+}
+
+.th {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.info {
+	padding: 30px;
+
+	.infoName {
+		font-size: 22px;
+		color: var(--primary-dark);
+		font-weight: 600;
+		margin-bottom: 10px;
+	}
+
+	.infoCountry, .infoSize, .infoAirports, .infoCenter {
+		font-size: 20px;
+		color: var(--primary);
+		margin-bottom: 5px;
+	}
+
+	.infoSize .sup {
+		font-size: 14px;
+	}
+}
