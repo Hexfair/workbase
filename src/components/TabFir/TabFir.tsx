@@ -44,7 +44,7 @@ function TabFir({ setFirCoords }: TabFirProps) {
 					<div className={styles.infoName}>{selectedFir.icao} - {selectedFir.name}</div>
 					<div className={styles.infoCountry}>Country: {selectedFir.country}</div>
 					<div className={styles.infoSize}>Size: {selectedFir.size} km<sup className={styles.sup}>2</sup></div>
-					<div className={styles.infoAirports}>Airports and heliports: {selectedFir.airports}</div>
+					<div className={styles.infoAirports}>Airports: {selectedFir.airports}</div>
 					<div className={styles.infoCenter}>Center: {selectedFir.center[0]}, {selectedFir.center[1]}</div>
 
 

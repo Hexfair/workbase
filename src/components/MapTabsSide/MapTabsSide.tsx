@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styles from './MapTabsSide.module.scss';
 import { MapTabsSideProps } from './MapTabsSide.props';
 import TabNotams from '../TabNotams/TabNotams';
 import TabFlights from '../TabFlights/TabFlights';
-import TabFir from '../TabFir/TabFir';
+import Snipper from '../UI/Snipper/Snipper';
+const TabFir = React.lazy(() => import('../TabFir/TabFir'));
 //===========================================================================================================
 type TabsType = 'notams' | 'flights' | 'fir';
 //=========================================================================================================================
@@ -38,7 +39,10 @@ export default function MapTabsSide(props: MapTabsSideProps) {
 			<div className={styles.content}>
 				{activeTab === 'notams' && <TabNotams setNotamCoords={setNotamCoords} />}
 				{activeTab === 'flights' && <TabFlights setFligthCoords={setFligthCoords} />}
-				{activeTab === 'fir' && <TabFir setFirCoords={setFirCoords} />}
+				{activeTab === 'fir' &&
+					<Suspense fallback={<div className={styles.loading}><Snipper /></div>}>
+						<TabFir setFirCoords={setFirCoords} />
+					</Suspense>}
 			</div>
 		</div>
 	);
