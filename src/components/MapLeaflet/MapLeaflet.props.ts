@@ -1,9 +1,9 @@
-import { IFir } from '../TabFir/TabFir';
-import { ICoordinate } from './MapLeaflet.interface';
+import { ICoordinate } from '../../@types/ICoordinate.interface';
+import { IFir } from '../../@types/IFir.interface';
 //===========================================================================================================
 
 export interface MapLeafletProps {
-	notamCoords: ICoordinate[][];
+	notamCoords: ICoordinate[][][];
 	fligthCoords: ICoordinate[];
 	firCoords: IFir;
 	setNotamCoords?: (value: ICoordinate[]) => void;

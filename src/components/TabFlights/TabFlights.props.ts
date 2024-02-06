@@ -1,4 +1,4 @@
-import { ICoordinate } from '../MapLeaflet/MapLeaflet.interface';
+import { ICoordinate } from '../../@types/ICoordinate.interface';
 //===========================================================================================================
 
 export interface TabFlightsProps {

@@ -3,7 +3,7 @@ import styles from './TabNotams.module.scss';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
 import { reg1, reg2, reg3 } from './TabNotams.regexp';
 import { TabNotamsProps } from './TabNotams.props';
-import { ICoordinate } from '../MapLeaflet/MapLeaflet.interface';
+import { ICoordinate } from '../../@types/ICoordinate.interface';
 //=========================================================================================================================
 
 function TabNotams({ setNotamCoords }: TabNotamsProps) {
@@ -15,6 +15,7 @@ function TabNotams({ setNotamCoords }: TabNotamsProps) {
 		if (match) {
 			const arr = textareaText.split('\n\n');
 			for (const el of arr) {
+				const arrItem: ICoordinate[][] = [];
 				const elMatch = el.match(reg1) || el.match(reg2) || el.match(reg3);
 				const coordItem: ICoordinate[] = [];
 
@@ -25,8 +26,10 @@ function TabNotams({ setNotamCoords }: TabNotamsProps) {
 						coordinates && coordItem.push(coordinates);
 					});
 				}
-
-				setNotamCoords((prev) => [...prev, coordItem]);
+				if (coordItem.length > 0) {
+					arrItem.push(coordItem);
+					setNotamCoords((prev) => [...prev, arrItem]);
+				}
 			}
 		}
 	};

@@ -5,12 +5,7 @@ import { dataCoord } from '../../assets/AllDecCoord';
 import DeleteIcon from '../../assets/icon/delete.svg?react';
 import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
-//=========================================================================================================================
-export interface ISelectedPoint {
-	point: string;
-	lat: number | null;
-	lng: number | null;
-}
+import { ISelectedPoint } from '../../@types/ISelectedPoint.interface';
 //=========================================================================================================================
 
 const AllDecCoord = new Map(Object.entries(dataCoord));

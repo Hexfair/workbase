@@ -1,17 +1,8 @@
 import React from 'react';
 import styles from './TabFir.module.scss';
 import { TabFirProps } from './TabFir.props';
-import { dataFIR } from '../../assets/fir';
-//=========================================================================================================================
-export interface IFir {
-	icao: string;
-	name: string;
-	area: number[][][];
-	size: string;
-	center: number[];
-	country: string;
-	airports: number;
-}
+import { dataFIR } from '../../assets/AllFirCoord';
+import { IFir } from '../../@types/IFir.interface';
 //=========================================================================================================================
 
 function TabFir({ setFirCoords }: TabFirProps) {

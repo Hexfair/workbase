@@ -1,5 +1,7 @@
-import { ICoordinate, SideTypes } from '../components/MapLeaflet/MapLeaflet.interface';
+import { ICoordinate } from '../@types/ICoordinate.interface';
 //===========================================================================================================
+export type SideTypes = 'N' | 'S' | 'W' | 'E';
+//=========================================================================================================================
 
 export const transformCoordinates = (d: number, m: number, s: number, side: SideTypes): number | undefined => {
 	const decimalCoord = d + (m / 60) + (s / 3600);

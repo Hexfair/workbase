@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import MapLeaflet from './components/MapLeaflet/MapLeaflet';
 import MapTabsSide from './components/MapTabsSide/MapTabsSide';
-import { ICoordinate } from './components/MapLeaflet/MapLeaflet.interface';
+import { ICoordinate } from './@types/ICoordinate.interface';
 import './index.css';
-import { IFir } from './components/TabFir/TabFir';
+import { IFir } from './@types/IFir.interface';
 //=========================================================================================================================
 
 const firInitial = {
@@ -17,7 +17,7 @@ const firInitial = {
 };
 
 function App() {
-	const [notamCoords, setNotamCoords] = useState<ICoordinate[][]>([]);
+	const [notamCoords, setNotamCoords] = useState<ICoordinate[][][]>([]);
 	const [fligthCoords, setFligthCoords] = useState<ICoordinate[]>([]);
 	const [firCoords, setFirCoords] = useState<IFir>(firInitial);
 

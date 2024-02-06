@@ -1,4 +1,4 @@
-import { IFir } from './TabFir';
+import { IFir } from "../../@types/IFir.interface";
 //===========================================================================================================
 
 export interface TabFirProps {

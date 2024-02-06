@@ -1,6 +1,6 @@
-import { ICoordinate } from '../MapLeaflet/MapLeaflet.interface';
+import { ICoordinate } from '../../@types/ICoordinate.interface';
 //===========================================================================================================
 
 export interface TabNotamsProps {
-	setNotamCoords: React.Dispatch<React.SetStateAction<ICoordinate[][]>>;
+	setNotamCoords: React.Dispatch<React.SetStateAction<ICoordinate[][][]>>;
 }

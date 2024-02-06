@@ -4,18 +4,17 @@ import L, { LeafletEvent } from 'leaflet';
 import './Leaflet.PolylineMeasure.js';
 import './Leaflet.PolylineMeasure.scss';
 //=========================================================================================================================
+const options = {
+	position: 'topleft',
+	unit: 'kilometres',
+	showBearings: true,
+	clearMeasurementsOnStop: false,
+	showClearControl: true,
+	showUnitControl: true
+};
 
 function LeafletRuler() {
 	const map = useMap();
-
-	const options = {
-		position: 'topleft',
-		unit: 'kilometres',
-		showBearings: true,
-		clearMeasurementsOnStop: false,
-		showClearControl: true,
-		showUnitControl: true
-	};
 
 	React.useEffect(() => {
 		//@ts-ignore
@@ -35,7 +34,7 @@ function LeafletRuler() {
 		map.on('polylinemeasure:remove', debugevent);
 
 		return () => polylineMeasure.remove();
-	}, [map, options]);
+	}, [map]);
 
 	return null;
 }
