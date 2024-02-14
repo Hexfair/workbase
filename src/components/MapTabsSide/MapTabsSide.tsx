@@ -4,13 +4,14 @@ import { MapTabsSideProps } from './MapTabsSide.props';
 import TabNotams from '../TabNotams/TabNotams';
 import TabFlights from '../TabFlights/TabFlights';
 import Snipper from '../UI/Snipper/Snipper';
+import TabArea from '../TabArea/TabArea';
 const TabFir = React.lazy(() => import('../TabFir/TabFir'));
 //===========================================================================================================
-type TabsType = 'notams' | 'flights' | 'fir';
+type TabsType = 'notams' | 'flights' | 'fir' | 'area';
 //=========================================================================================================================
 
 export default function MapTabsSide(props: MapTabsSideProps) {
-	const { setNotamCoords, setFligthCoords, setFirCoords } = props;
+	const { setNotamCoords, setFligthCoords, setFirCoords, setAreaCoords } = props;
 	const [activeTab, setActiveTab] = React.useState<TabsType>('notams');
 
 	const onChangeActiveTab = (newTab: TabsType) => {
@@ -35,6 +36,11 @@ export default function MapTabsSide(props: MapTabsSideProps) {
 					onClick={() => onChangeActiveTab('fir')}
 				>FIR
 				</button>
+				<button
+					className={`${styles.tab} ${activeTab === 'area' && styles.active}`}
+					onClick={() => onChangeActiveTab('area')}
+				>AREA
+				</button>
 			</div>
 			<div className={styles.content}>
 				{activeTab === 'notams' && <TabNotams setNotamCoords={setNotamCoords} />}
@@ -43,6 +49,8 @@ export default function MapTabsSide(props: MapTabsSideProps) {
 					<Suspense fallback={<div className={styles.loading}><Snipper /></div>}>
 						<TabFir setFirCoords={setFirCoords} />
 					</Suspense>}
+				{activeTab === 'area' && <TabArea setAreaCoords={setAreaCoords} setNotamCoords={setNotamCoords} />}
+
 			</div>
 		</div>
 	);
