@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"@turf/turf": "^6.5.0",
+		"d3": "^7.8.5",
 		"express": "^4.18.2",
 		"leaflet.offline": "^3.0.1",
 		"react": "^18.2.0",
@@ -22,6 +23,7 @@
 		"vite-plugin-svgr": "^4.2.0"
 	},
 	"devDependencies": {
+		"@types/d3": "^7.4.3",
 		"@types/leaflet": "^1.9.8",
 		"@types/react": "^18.2.43",
 		"@types/react-dom": "^18.2.17",

@@ -12,13 +12,18 @@ import React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as turf from '@turf/turf';
+import BlockInfo from '../BlockInfo/BlockInfo';
+import { IDifference } from '../../@types/IDifference.interface';
 //===========================================================================================================
 const MAP_CENTER = { lat: 40.0, lng: -90.00 };
 //===========================================================================================================
 
-export default function MapLeaflet({ notamCoords, fligthCoords, firCoords, areaCoords, clearAll }: MapLeafletProps) {
-	const [data, setData] = React.useState<number[][][]>([]);
-	const isNotEmpty = notamCoords.length > 0 || fligthCoords.length > 0 || firCoords.center.length > 0;
+export default function MapLeaflet(props: MapLeafletProps) {
+	const { notamCoords, fligthCoords, firCoords, areaCoords, clearAll, activeTab } = props;
+
+	const [dataDifference, setDataDifference] = React.useState<IDifference>({ diffNotam: [], diffArea: [] });
+	const [dataIntersect, setDataIntersect] = React.useState<number[][][] | null>(null);
+	const isNotEmpty = notamCoords.length > 0 || fligthCoords.length > 0 || firCoords.center.length > 0 || dataDifference;
 
 	const getRecenter = () => {
 		if (notamCoords.length > 0) return { lat: notamCoords[0][0][0].lat, lng: notamCoords[0][0][0].lng };
@@ -27,44 +32,31 @@ export default function MapLeaflet({ notamCoords, fligthCoords, firCoords, areaC
 		return MAP_CENTER;
 	};
 
+	const clearMap = () => {
+		clearAll();
+		setDataDifference({ diffNotam: [], diffArea: [] });
+	}
+
 	React.useEffect(() => {
 		if (notamCoords.length > 0 && areaCoords.area.length > 3) {
-
-			const c1 = notamCoords[0].map(item => {
+			const p1 = notamCoords[0].map(item => {
 				return item.map(obj => ([obj.lat, obj.lng]))
 			})
 
-			let poly1 = turf.polygon(c1, {
-				"fill": "#F00",
-				"fill-opacity": 0.1
-			});
+			const p2 = [areaCoords.area];
 
-			let poly2 = turf.polygon([areaCoords.area], {
-				"fill": "#00F",
-				"fill-opacity": 0.1
-			});
-
-			console.log('p1', turf.area(poly1));
-			console.log('p2', turf.area(poly2));
-
+			let poly1 = turf.polygon(p1);
+			let poly2 = turf.polygon(p2);
 
 			let intersection = turf.intersect(poly1, poly2);
+
 			if (intersection) {
-				setData(intersection.geometry.coordinates)
-				console.log(intersection.geometry.coordinates);
-				let poly3 = turf.polygon(intersection.geometry.coordinates, {
-					"fill": "#00F",
-					"fill-opacity": 0.1
-				});
-
-
-				console.log('r2', turf.area(poly3));
+				setDataIntersect(intersection.geometry.coordinates)
+			} else {
+				setDataIntersect(null)
 			}
 		}
-
-	})
-
-
+	}, [areaCoords, notamCoords])
 
 	return (
 		<div className={styles.map}>
@@ -94,15 +86,15 @@ export default function MapLeaflet({ notamCoords, fligthCoords, firCoords, areaC
 				{areaCoords.area.length > 0 &&
 					<Polygon
 						pathOptions={areaOptions}
-						positions={areaCoords.area.map(item => ({ lat: item[0], lng: item[1] }))}
+						positions={areaCoords.area.map(item => ([item[0], item[1]]))}
 					>
 						<Tooltip sticky>{areaCoords.name}</Tooltip>
 					</Polygon>}
 
-				{data.length > 0 &&
+				{dataIntersect &&
 					<Polygon
 						pathOptions={difOptions}
-						positions={data[0].map(item => ([item[0], item[1]]))}
+						positions={dataIntersect[0].map(item => ([item[0], item[1]]))}
 					>
 					</Polygon>}
 
@@ -120,10 +112,37 @@ export default function MapLeaflet({ notamCoords, fligthCoords, firCoords, areaC
 			</MapContainer>
 			{
 				isNotEmpty && <span className={styles.clear} title='Clear All'>
-					<ClearIcon className={styles.icon} onClick={clearAll} />
+					<ClearIcon className={styles.icon} onClick={clearMap} />
 				</span>
 			}
-			<button></button>
+			{activeTab === 'area' && <BlockInfo areaCoords={areaCoords} notamCoords={notamCoords} dataIntersect={dataIntersect} />}
 		</div >
 	);
 }
+
+/*
+[
+	 [
+		  [
+				36,
+				-90
+		  ],
+		  [
+				40,
+				-90
+		  ],
+		  [
+				40.52122868962302,
+				-88.17569958631941
+		  ],
+		  [
+				36.244198360489825,
+				-89.02320655804068
+		  ],
+		  [
+				36,
+				-90
+		  ]
+	 ]
+]
+*/

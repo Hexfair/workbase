@@ -6,6 +6,9 @@ import { IArea } from '../../@types/IArea.interface';
 import { ICoordinate } from '../../@types/ICoordinate.interface';
 import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import * as turf from '@turf/turf';
 //=========================================================================================================================
 
 function TabArea({ setAreaCoords, setNotamCoords }: TabAreaProps) {
@@ -19,7 +22,6 @@ function TabArea({ setAreaCoords, setNotamCoords }: TabAreaProps) {
 			setSelectedArea(findItem);
 		}
 	};
-
 
 	const searchNotam = () => {
 		const match = textareaText.match(reg1) || textareaText.match(reg2) || textareaText.match(reg3);
@@ -45,7 +47,6 @@ function TabArea({ setAreaCoords, setNotamCoords }: TabAreaProps) {
 			}
 		}
 	};
-
 
 	return (
 		<div className={styles.box}>
@@ -74,16 +75,6 @@ function TabArea({ setAreaCoords, setNotamCoords }: TabAreaProps) {
 				onClick={searchNotam}
 			>Построить по координатам
 			</button>
-			{/* {selectedArea &&
-				<div className={styles.info}>
-					<div className={styles.infoName}>{selectedArea.icao} - {selectedArea.name}</div>
-					<div className={styles.infoCountry}>Country: {selectedArea.country}</div>
-					<div className={styles.infoSize}>Size: {selectedArea.size} km<sup className={styles.sup}>2</sup></div>
-					<div className={styles.infoAirports}>Airports: {selectedArea.airports}</div>
-					<div className={styles.infoCenter}>Center: {selectedArea.center[0]}, {selectedArea.center[1]}</div>
-
-
-				</div>} */}
 		</div >
 	);
 }

@@ -55,27 +55,6 @@
 }
 
 .info {
-	padding: 30px;
-
-	.infoName {
-		font-size: 22px;
-		color: var(--primary-dark);
-		font-weight: 600;
-		margin-bottom: 10px;
-	}
-
-	.infoCountry,
-	.infoSize,
-	.infoAirports,
-	.infoCenter {
-		font-size: 20px;
-		color: var(--primary);
-		margin-bottom: 5px;
-	}
-
-	.infoSize .sup {
-		font-size: 14px;
-	}
 }
 
 .textarea {
