@@ -5,6 +5,7 @@ import { ICoordinate } from './@types/ICoordinate.interface';
 import './index.css';
 import { IFir } from './@types/IFir.interface';
 import { IArea } from './@types/IArea.interface';
+import { TabsType } from './@types/Tabs.type';
 //=========================================================================================================================
 
 const firInitial = {
@@ -27,11 +28,14 @@ function App() {
 	const [fligthCoords, setFligthCoords] = useState<ICoordinate[]>([]);
 	const [firCoords, setFirCoords] = useState<IFir>(firInitial);
 	const [areaCoords, setAreaCoords] = useState<IArea>(areaInitial);
+	const [activeTab, setActiveTab] = useState<TabsType>('notams');
+
 
 	const clearAll = () => {
 		setNotamCoords([]);
 		setFligthCoords([]);
 		setFirCoords(firInitial);
+		setAreaCoords(areaInitial);
 	};
 
 	return (
@@ -41,12 +45,15 @@ function App() {
 				fligthCoords={fligthCoords}
 				firCoords={firCoords}
 				areaCoords={areaCoords}
-				clearAll={clearAll} />
+				clearAll={clearAll}
+				activeTab={activeTab} />
 			<MapTabsSide
 				setNotamCoords={setNotamCoords}
 				setFligthCoords={setFligthCoords}
 				setFirCoords={setFirCoords}
 				setAreaCoords={setAreaCoords}
+				activeTab={activeTab}
+				setActiveTab={setActiveTab}
 			/>
 		</main>
 	);

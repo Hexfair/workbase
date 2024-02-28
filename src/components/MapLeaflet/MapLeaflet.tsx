@@ -12,13 +12,18 @@ import React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as turf from '@turf/turf';
+import BlockInfo from '../BlockInfo/BlockInfo';
+import { IDifference } from '../../@types/IDifference.interface';
 //===========================================================================================================
 const MAP_CENTER = { lat: 40.0, lng: -90.00 };
 //===========================================================================================================
 
-export default function MapLeaflet({ notamCoords, fligthCoords, firCoords, areaCoords, clearAll }: MapLeafletProps) {
-	const [data, setData] = React.useState<number[][][]>([]);
-	const isNotEmpty = notamCoords.length > 0 || fligthCoords.length > 0 || firCoords.center.length > 0;
+export default function MapLeaflet(props: MapLeafletProps) {
+	const { notamCoords, fligthCoords, firCoords, areaCoords, clearAll, activeTab } = props;
+
+	const [dataDifference, setDataDifference] = React.useState<IDifference>({ diffNotam: [], diffArea: [] });
+	const [dataIntersect, setDataIntersect] = React.useState<number[][] | null>(null);
+	const isNotEmpty = notamCoords.length > 0 || fligthCoords.length > 0 || firCoords.center.length > 0 || dataDifference;
 
 	const getRecenter = () => {
 		if (notamCoords.length > 0) return { lat: notamCoords[0][0][0].lat, lng: notamCoords[0][0][0].lng };
@@ -27,44 +32,68 @@ export default function MapLeaflet({ notamCoords, fligthCoords, firCoords, areaC
 		return MAP_CENTER;
 	};
 
+	const clearMap = () => {
+		clearAll();
+		setDataDifference({ diffNotam: [], diffArea: [] });
+	}
+
 	React.useEffect(() => {
 		if (notamCoords.length > 0 && areaCoords.area.length > 3) {
-
-			const c1 = notamCoords[0].map(item => {
+			const p1 = notamCoords[0].map(item => {
 				return item.map(obj => ([obj.lat, obj.lng]))
 			})
 
-			let poly1 = turf.polygon(c1, {
-				"fill": "#F00",
-				"fill-opacity": 0.1
-			});
+			const p2 = [areaCoords.area];
 
-			let poly2 = turf.polygon([areaCoords.area], {
-				"fill": "#00F",
-				"fill-opacity": 0.1
-			});
+			let poly1 = turf.polygon(p1);
+			let poly2 = turf.polygon(p2);
 
-			console.log('p1', turf.area(poly1));
-			console.log('p2', turf.area(poly2));
+			let difference1 = turf.difference(poly1, poly2);
+			let difference2 = turf.difference(poly2, poly1);
 
+			console.log(difference1);
+
+			if (!difference1 || !difference2) {
+				return
+			}
+
+			if (difference1.geometry.type === 'Polygon') {
+				setDataDifference(prev => ({
+					...prev,
+					diffNotam: [difference1.geometry.coordinates]
+				}))
+			}
+
+			if (difference2.geometry.type === 'Polygon') {
+				setDataDifference(prev => ({
+					...prev,
+					diffArea: [difference2.geometry.coordinates]
+				}))
+			}
+
+			if (difference1.geometry.type === 'MultiPolygon') {
+				setDataDifference(prev => ({
+					...prev,
+					diffNotam: difference1.geometry.coordinates
+				}))
+			}
+
+			if (difference2.geometry.type === 'MultiPolygon') {
+				setDataDifference(prev => ({
+					...prev,
+					diffArea: difference2.geometry.coordinates
+				}))
+			}
 
 			let intersection = turf.intersect(poly1, poly2);
+
 			if (intersection) {
-				setData(intersection.geometry.coordinates)
-				console.log(intersection.geometry.coordinates);
-				let poly3 = turf.polygon(intersection.geometry.coordinates, {
-					"fill": "#00F",
-					"fill-opacity": 0.1
-				});
-
-
-				console.log('r2', turf.area(poly3));
+				setDataIntersect(intersection.geometry.coordinates[0])
+			} else {
+				setDataIntersect(null)
 			}
 		}
-
-	})
-
-
+	}, [areaCoords, notamCoords])
 
 	return (
 		<div className={styles.map}>
@@ -94,15 +123,15 @@ export default function MapLeaflet({ notamCoords, fligthCoords, firCoords, areaC
 				{areaCoords.area.length > 0 &&
 					<Polygon
 						pathOptions={areaOptions}
-						positions={areaCoords.area.map(item => ({ lat: item[0], lng: item[1] }))}
+						positions={areaCoords.area.map(item => ([item[0], item[1]]))}
 					>
 						<Tooltip sticky>{areaCoords.name}</Tooltip>
 					</Polygon>}
 
-				{data.length > 0 &&
+				{dataIntersect &&
 					<Polygon
 						pathOptions={difOptions}
-						positions={data[0].map(item => ([item[0], item[1]]))}
+						positions={dataIntersect.map(item => ([item[0], item[1]]))}
 					>
 					</Polygon>}
 
@@ -120,10 +149,94 @@ export default function MapLeaflet({ notamCoords, fligthCoords, firCoords, areaC
 			</MapContainer>
 			{
 				isNotEmpty && <span className={styles.clear} title='Clear All'>
-					<ClearIcon className={styles.icon} onClick={clearAll} />
+					<ClearIcon className={styles.icon} onClick={clearMap} />
 				</span>
 			}
-			<button></button>
+			{activeTab === 'area' && <BlockInfo areaCoords={areaCoords} notamCoords={notamCoords} dataDifference={dataDifference} dataIntersect={dataIntersect} />}
 		</div >
 	);
 }
+
+/*
+[
+	[
+		 [
+			  [
+					36.91936690647482,
+					-86.32253237410072
+			  ],
+			  [
+					38.030721570766296,
+					-82.03072157076629
+			  ],
+			  [
+					38,
+					-82
+			  ],
+			  [
+					36.91936690647482,
+					-86.32253237410072
+			  ]
+		 ]
+	],
+	[
+		 [
+			  [
+					40.98448907076555,
+					-84.98448907076555
+			  ],
+			  [
+					40.984645682645784,
+					-86.55374011073975
+			  ],
+			  [
+					42,
+					-83
+			  ],
+			  [
+					41,
+					-85
+			  ],
+			  [
+					40.98448907076555,
+					-84.98448907076555
+			  ]
+		 ]
+	]
+]
+*/
+
+/*
+[
+	 [
+		  [
+				36.97321298526153,
+				-86.10714805895387
+		  ],
+		  [
+				40.984,
+				-86.084
+		  ],
+		  [
+				40.98411731079906,
+				-86.5555894122033
+		  ],
+		  [
+				42,
+				-83
+		  ],
+		  [
+				41,
+				-85
+		  ],
+		  [
+				38,
+				-82
+		  ],
+		  [
+				36.97321298526153,
+				-86.10714805895387
+		  ]
+	 ]
+]
+*/

@@ -5,14 +5,12 @@ import TabNotams from '../TabNotams/TabNotams';
 import TabFlights from '../TabFlights/TabFlights';
 import Snipper from '../UI/Snipper/Snipper';
 import TabArea from '../TabArea/TabArea';
+import { TabsType } from '../../@types/Tabs.type';
 const TabFir = React.lazy(() => import('../TabFir/TabFir'));
 //===========================================================================================================
-type TabsType = 'notams' | 'flights' | 'fir' | 'area';
-//=========================================================================================================================
 
 export default function MapTabsSide(props: MapTabsSideProps) {
-	const { setNotamCoords, setFligthCoords, setFirCoords, setAreaCoords } = props;
-	const [activeTab, setActiveTab] = React.useState<TabsType>('notams');
+	const { setNotamCoords, setFligthCoords, setFirCoords, setAreaCoords, activeTab, setActiveTab } = props;
 
 	const onChangeActiveTab = (newTab: TabsType) => {
 		setActiveTab(newTab);
