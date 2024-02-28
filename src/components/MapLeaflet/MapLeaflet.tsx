@@ -22,11 +22,7 @@ export default function MapLeaflet(props: MapLeafletProps) {
 	const { notamCoords, fligthCoords, firCoords, areaCoords, clearAll, activeTab } = props;
 
 	const [dataDifference, setDataDifference] = React.useState<IDifference>({ diffNotam: [], diffArea: [] });
-<<<<<<< HEAD
 	const [dataIntersect, setDataIntersect] = React.useState<number[][][] | null>(null);
-=======
-	const [dataIntersect, setDataIntersect] = React.useState<number[][] | null>(null);
->>>>>>> 979669274dc1aa614e74463a847132955a89a484
 	const isNotEmpty = notamCoords.length > 0 || fligthCoords.length > 0 || firCoords.center.length > 0 || dataDifference;
 
 	const getRecenter = () => {
@@ -48,61 +44,14 @@ export default function MapLeaflet(props: MapLeafletProps) {
 			})
 
 			const p2 = [areaCoords.area];
-<<<<<<< HEAD
 
 			let poly1 = turf.polygon(p1);
 			let poly2 = turf.polygon(p2);
-=======
-
-			let poly1 = turf.polygon(p1);
-			let poly2 = turf.polygon(p2);
-
-			let difference1 = turf.difference(poly1, poly2);
-			let difference2 = turf.difference(poly2, poly1);
-
-			console.log(difference1);
-
-			if (!difference1 || !difference2) {
-				return
-			}
-
-			if (difference1.geometry.type === 'Polygon') {
-				setDataDifference(prev => ({
-					...prev,
-					diffNotam: [difference1.geometry.coordinates]
-				}))
-			}
-
-			if (difference2.geometry.type === 'Polygon') {
-				setDataDifference(prev => ({
-					...prev,
-					diffArea: [difference2.geometry.coordinates]
-				}))
-			}
-
-			if (difference1.geometry.type === 'MultiPolygon') {
-				setDataDifference(prev => ({
-					...prev,
-					diffNotam: difference1.geometry.coordinates
-				}))
-			}
-
-			if (difference2.geometry.type === 'MultiPolygon') {
-				setDataDifference(prev => ({
-					...prev,
-					diffArea: difference2.geometry.coordinates
-				}))
-			}
->>>>>>> 979669274dc1aa614e74463a847132955a89a484
 
 			let intersection = turf.intersect(poly1, poly2);
 
 			if (intersection) {
-<<<<<<< HEAD
 				setDataIntersect(intersection.geometry.coordinates)
-=======
-				setDataIntersect(intersection.geometry.coordinates[0])
->>>>>>> 979669274dc1aa614e74463a847132955a89a484
 			} else {
 				setDataIntersect(null)
 			}
@@ -145,11 +94,7 @@ export default function MapLeaflet(props: MapLeafletProps) {
 				{dataIntersect &&
 					<Polygon
 						pathOptions={difOptions}
-<<<<<<< HEAD
 						positions={dataIntersect[0].map(item => ([item[0], item[1]]))}
-=======
-						positions={dataIntersect.map(item => ([item[0], item[1]]))}
->>>>>>> 979669274dc1aa614e74463a847132955a89a484
 					>
 					</Polygon>}
 
@@ -170,18 +115,13 @@ export default function MapLeaflet(props: MapLeafletProps) {
 					<ClearIcon className={styles.icon} onClick={clearMap} />
 				</span>
 			}
-<<<<<<< HEAD
 			{activeTab === 'area' && <BlockInfo areaCoords={areaCoords} notamCoords={notamCoords} dataIntersect={dataIntersect} />}
-=======
-			{activeTab === 'area' && <BlockInfo areaCoords={areaCoords} notamCoords={notamCoords} dataDifference={dataDifference} dataIntersect={dataIntersect} />}
->>>>>>> 979669274dc1aa614e74463a847132955a89a484
 		</div >
 	);
 }
 
 /*
 [
-<<<<<<< HEAD
 	 [
 		  [
 				36,
@@ -202,85 +142,6 @@ export default function MapLeaflet(props: MapLeafletProps) {
 		  [
 				36,
 				-90
-=======
-	[
-		 [
-			  [
-					36.91936690647482,
-					-86.32253237410072
-			  ],
-			  [
-					38.030721570766296,
-					-82.03072157076629
-			  ],
-			  [
-					38,
-					-82
-			  ],
-			  [
-					36.91936690647482,
-					-86.32253237410072
-			  ]
-		 ]
-	],
-	[
-		 [
-			  [
-					40.98448907076555,
-					-84.98448907076555
-			  ],
-			  [
-					40.984645682645784,
-					-86.55374011073975
-			  ],
-			  [
-					42,
-					-83
-			  ],
-			  [
-					41,
-					-85
-			  ],
-			  [
-					40.98448907076555,
-					-84.98448907076555
-			  ]
-		 ]
-	]
-]
-*/
-
-/*
-[
-	 [
-		  [
-				36.97321298526153,
-				-86.10714805895387
-		  ],
-		  [
-				40.984,
-				-86.084
-		  ],
-		  [
-				40.98411731079906,
-				-86.5555894122033
-		  ],
-		  [
-				42,
-				-83
-		  ],
-		  [
-				41,
-				-85
-		  ],
-		  [
-				38,
-				-82
-		  ],
-		  [
-				36.97321298526153,
-				-86.10714805895387
->>>>>>> 979669274dc1aa614e74463a847132955a89a484
 		  ]
 	 ]
 ]
