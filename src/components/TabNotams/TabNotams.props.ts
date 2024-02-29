@@ -1,6 +1,6 @@
-import { Coordinate } from '../../@types/Coordinate.type';
-//===========================================================================================================
+// import { Coordinate } from '../../@types/Coordinate.type';
+// //===========================================================================================================
 
-export interface TabNotamsProps {
-	setNotamCoords: React.Dispatch<React.SetStateAction<Coordinate[][][]>>;
-}
+// export interface TabNotamsProps {
+// 	setNotamCoords: React.Dispatch<React.SetStateAction<Coordinate[][][]>>;
+// }

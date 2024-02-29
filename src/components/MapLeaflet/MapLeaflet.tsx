@@ -2,7 +2,6 @@ import { MapContainer, TileLayer, Polygon, Popup, Polyline, Marker, Tooltip } fr
 import styles from './MapLeaflet.module.scss';
 import 'leaflet.offline';
 import 'leaflet/dist/leaflet.css';
-import { MapLeafletProps } from './MapLeaflet.props';
 import Recenter from './Plugins/MapRecenter';
 import { difOptions, areaOptions, blueOptions, circleIcon, purpleOptions, squareIcon } from './MapLeaflet.options';
 import ClearIcon from '../../assets/icon/clear.svg?react';
@@ -13,17 +12,17 @@ import React from 'react';
 // @ts-ignore
 import * as turf from '@turf/turf';
 import BlockInfo from '../BlockInfo/BlockInfo';
-import { IDifference } from '../../@types/IDifference.interface';
+import { useStore } from '../../store/store';
+import { Coordinate } from '../../@types/Coordinate.type';
 //===========================================================================================================
 const MAP_CENTER = { lat: 40.0, lng: -90.00 };
 //===========================================================================================================
 
-export default function MapLeaflet(props: MapLeafletProps) {
-	const { notamCoords, fligthCoords, firCoords, areaCoords, clearAll, activeTab } = props;
+export default function MapLeaflet() {
+	const { activeTab, fligthCoords, notamCoords, firCoords, areaCoords, reset } = useStore();
 
-	const [dataDifference, setDataDifference] = React.useState<IDifference>({ diffNotam: [], diffArea: [] });
-	const [dataIntersect, setDataIntersect] = React.useState<number[][][] | null>(null);
-	const isNotEmpty = notamCoords.length > 0 || fligthCoords.length > 0 || firCoords || dataDifference;
+	const [dataIntersect, setDataIntersect] = React.useState<Coordinate[][] | null>(null);
+	const isNotEmpty = notamCoords.length > 0 || fligthCoords.length > 0 || firCoords;
 
 	const getRecenter = () => {
 		if (notamCoords.length > 0) return { lat: notamCoords[0][0][0][0], lng: notamCoords[0][0][0][1] };
@@ -33,9 +32,9 @@ export default function MapLeaflet(props: MapLeafletProps) {
 	};
 
 	const clearMap = () => {
-		clearAll();
-		setDataDifference({ diffNotam: [], diffArea: [] });
-	};
+		reset();
+		setDataIntersect(null);
+	}
 
 	React.useEffect(() => {
 		if (notamCoords.length > 0 && areaCoords.area.length > 3) {
@@ -110,11 +109,10 @@ export default function MapLeaflet(props: MapLeafletProps) {
 				<CursorCoordinates />
 				<LeafletRuler />
 			</MapContainer>
-			{
-				isNotEmpty && <span className={styles.clear} title='Clear All'>
+			{isNotEmpty &&
+				<span className={styles.clear} title='Clear All'>
 					<ClearIcon className={styles.icon} onClick={clearMap} />
-				</span>
-			}
+				</span>}
 			{activeTab === 'area' && <BlockInfo areaCoords={areaCoords} notamCoords={notamCoords} dataIntersect={dataIntersect} />}
 		</div >
 	);

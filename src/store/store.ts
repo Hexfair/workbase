@@ -1,32 +1,38 @@
-// import { create } from 'zustand'
-// import { ICoordinate } from '../@types/ICoordinate.interface'
+import { create } from 'zustand';
+import { ActionsStore, StateStore } from './types';
 
-// type StateStore = {
-// 	notamCoords: ICoordinate[][][]
-// 	tuna: number
-// }
+const initialState: StateStore = {
+	activeTab: 'notams',
+	notamCoords: [],
+	fligthCoords: [],
+	firCoords: null,
+	areaCoords: { name: '', area: [] }
+};
 
-// type ActionsStore = {
-// 	addSalmon: (qty: number) => void
-// 	addTuna: (qty: number) => void
-// 	reset: () => void
-// }
+export const useStore = create<StateStore & ActionsStore>()((set, get) => ({
+	...initialState,
+	setActiveTab: (payload) => {
+		set({ activeTab: payload });
+	},
+	setNotamCoords: (payload) => {
+		const prevNotamCoords = get().notamCoords;
+		set({ notamCoords: [...prevNotamCoords, ...payload] });
+	},
+	setFligthCoords: (payload) => {
+		const prevFlightCoords = get().fligthCoords;
+		set({ fligthCoords: [...prevFlightCoords, ...payload] });
+	},
+	deleteFligthCoord: (payload) => {
+		set({ fligthCoords: get().fligthCoords.filter(obj => obj[0] !== payload.lat && obj[1] !== payload.lng) });
+	},
+	setFirCoords: (payload) => {
+		set({ firCoords: payload });
+	},
+	setAreaCoords: (payload) => {
+		set({ areaCoords: payload });
+	},
 
-// const initialState: StateStore = {
-// 	salmon: 0,
-// 	tuna: 0,
-// }
-
-// // create store
-// const useSlice = create<StateStore & ActionsStore>()((set, get) => ({
-// 	...initialState,
-// 	addSalmon: (qty: number) => {
-// 		set({ salmon: get().salmon + qty })
-// 	},
-// 	addTuna: (qty: number) => {
-// 		set({ tuna: get().tuna + qty })
-// 	},
-// 	reset: () => {
-// 		set(initialState)
-// 	},
-// }))
+	reset: () => {
+		set(initialState);
+	}
+}));

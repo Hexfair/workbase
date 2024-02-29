@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from './TabFir.module.scss';
-import { TabFirProps } from './TabFir.props';
 import { dataFIR } from '../../assets/AllFirCoord';
 import { IFir } from '../../@types/IFir.interface';
+import { useStore } from '../../store/store';
 //=========================================================================================================================
 
-function TabFir({ setFirCoords }: TabFirProps) {
+function TabFir() {
+	const { setFirCoords } = useStore();
+
 	const [selectedFir, setSelectedFir] = React.useState<Omit<IFir, 'area'>>();
 
 	const onClickFir = (icao: string) => {

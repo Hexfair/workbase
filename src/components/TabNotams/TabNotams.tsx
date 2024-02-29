@@ -2,12 +2,15 @@ import React from 'react';
 import styles from './TabNotams.module.scss';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
 import { reg1, reg2, reg3 } from './TabNotams.regexp';
-import { TabNotamsProps } from './TabNotams.props';
+// import { TabNotamsProps } from './TabNotams.props';
 import { Coordinate } from '../../@types/Coordinate.type';
+import { useStore } from '../../store/store';
 //=========================================================================================================================
 
-function TabNotams({ setNotamCoords }: TabNotamsProps) {
+function TabNotams() {
+	const { setNotamCoords } = useStore();
 	const [textareaText, setTextareaText] = React.useState<string>('');
+
 
 	const searchNotam = () => {
 		const match = textareaText.match(reg1) || textareaText.match(reg2) || textareaText.match(reg3);
@@ -29,7 +32,7 @@ function TabNotams({ setNotamCoords }: TabNotamsProps) {
 			}
 			if (coordItem.length > 0) {
 				arrItem.push(coordItem);
-				setNotamCoords((prev) => [...prev, arrItem]);
+				setNotamCoords([arrItem]);
 			}
 		}
 	};

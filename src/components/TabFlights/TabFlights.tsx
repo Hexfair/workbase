@@ -1,31 +1,25 @@
 import React from 'react';
 import styles from './TabFlights.module.scss';
-import { TabFlightsProps } from './TabFlights.props';
 import { dataCoord } from '../../assets/AllDecCoord';
 import DeleteIcon from '../../assets/icon/delete.svg?react';
 import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
 import { ISelectedPoint } from '../../@types/ISelectedPoint.interface';
+import { useStore } from '../../store/store';
 //=========================================================================================================================
 
 const AllDecCoord = new Map(Object.entries(dataCoord));
 
-function TabFlights({ setFligthCoords }: TabFlightsProps) {
+function TabFlights() {
+	const { setFligthCoords, deleteFligthCoord } = useStore();
+
 	const [pointsSelected, setPointsSelected] = React.useState<ISelectedPoint[]>([]);
 	const [textareaText, setTextareaText] = React.useState<string>('');
 
 	const onDeletePoint = (obj: ISelectedPoint) => {
+		if (!obj.coords) return;
 		setPointsSelected((prev) => prev.filter((item) => item.point !== obj.point));
-
-		if (obj.coords) {
-			const smallObj = {
-				lat: obj.coords[0],
-				lng: obj.coords[1]
-			};
-			setFligthCoords((prev) =>
-				prev.filter((item) => item[0] !== smallObj.lat && item[1] !== smallObj.lng)
-			);
-		}
+		deleteFligthCoord({ lat: obj.coords[0], lng: obj.coords[1] });
 	};
 
 	const onSelectText = async (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -35,7 +29,7 @@ function TabFlights({ setFligthCoords }: TabFlightsProps) {
 			const coordinates = AllDecCoord.get(selectedText);
 
 			if (coordinates) {
-				setFligthCoords((prev) => [...prev, [coordinates[0], coordinates[1]]]);
+				setFligthCoords([[coordinates[0], coordinates[1]]]);
 
 				const pointData: ISelectedPoint = {
 					point: selectedText,
@@ -53,7 +47,7 @@ function TabFlights({ setFligthCoords }: TabFlightsProps) {
 				const coordinates = calcResultCoordinates(tepmlatedCoord);
 
 				if (coordinates) {
-					setFligthCoords((prev) => [...prev, [coordinates[0], coordinates[1]]]);
+					setFligthCoords([[coordinates[0], coordinates[1]]]);
 
 					const pointData: ISelectedPoint = {
 						point: '[coord]',
@@ -88,7 +82,7 @@ function TabFlights({ setFligthCoords }: TabFlightsProps) {
 			{pointsSelected.map((obj, index) => (
 				<div key={obj.point + index} className={styles.pointsItem}>
 					<span>{obj.point}</span>
-					{obj.coords ? <span>{obj.coords[0]}, {obj.coords[1]}	</span> : <span>Нет в базе</span>}
+					<span>{obj.coords[0]}, {obj.coords[1]}</span>
 					<span className={styles.delete}>
 						<DeleteIcon onClick={() => onDeletePoint(obj)} />
 					</span>

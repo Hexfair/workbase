@@ -1,14 +1,16 @@
 import React from 'react';
 import styles from './TabArea.module.scss';
-import { TabAreaProps } from './TabArea.props';
 import { dataArea } from '../../assets/AllAreaCoord';
 import { IArea } from '../../@types/IArea.interface';
 import { Coordinate } from '../../@types/Coordinate.type';
 import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
+import { useStore } from '../../store/store';
 //=========================================================================================================================
 
-function TabArea({ setAreaCoords, setNotamCoords }: TabAreaProps) {
+function TabArea() {
+	const { setNotamCoords, setAreaCoords } = useStore();
+
 	const [selectedArea, setSelectedArea] = React.useState<IArea>();
 	const [textareaText, setTextareaText] = React.useState<string>('');
 
@@ -39,7 +41,7 @@ function TabArea({ setAreaCoords, setNotamCoords }: TabAreaProps) {
 				}
 				if (coordItem.length > 0) {
 					arrItem.push(coordItem);
-					setNotamCoords((prev) => [...prev, arrItem]);
+					setNotamCoords([arrItem]);
 				}
 			}
 		}
