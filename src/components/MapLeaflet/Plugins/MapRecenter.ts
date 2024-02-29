@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMap } from 'react-leaflet';
 import 'leaflet.offline';
-import { ICoordinate } from '../../../@types/ICoordinate.interface';
+import { ICoordinate } from '../../../@types/Coordinate.type';
 //===========================================================================================================
 
 export default function Recenter({ lat, lng }: ICoordinate) {

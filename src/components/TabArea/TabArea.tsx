@@ -3,12 +3,9 @@ import styles from './TabArea.module.scss';
 import { TabAreaProps } from './TabArea.props';
 import { dataArea } from '../../assets/AllAreaCoord';
 import { IArea } from '../../@types/IArea.interface';
-import { ICoordinate } from '../../@types/ICoordinate.interface';
+import { Coordinate } from '../../@types/Coordinate.type';
 import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import * as turf from '@turf/turf';
 //=========================================================================================================================
 
 function TabArea({ setAreaCoords, setNotamCoords }: TabAreaProps) {
@@ -29,9 +26,9 @@ function TabArea({ setAreaCoords, setNotamCoords }: TabAreaProps) {
 		if (match) {
 			const arr = textareaText.split('\n\n');
 			for (const el of arr) {
-				const arrItem: ICoordinate[][] = [];
+				const arrItem: Coordinate[][] = [];
 				const elMatch = el.match(reg1) || el.match(reg2) || el.match(reg3);
-				const coordItem: ICoordinate[] = [];
+				const coordItem: Coordinate[] = [];
 
 				if (elMatch && elMatch.length > 3) {
 					elMatch.forEach((item) => {

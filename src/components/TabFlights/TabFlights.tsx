@@ -16,13 +16,16 @@ function TabFlights({ setFligthCoords }: TabFlightsProps) {
 
 	const onDeletePoint = (obj: ISelectedPoint) => {
 		setPointsSelected((prev) => prev.filter((item) => item.point !== obj.point));
-		const smallObj = {
-			lat: obj.lat,
-			lng: obj.lng
-		};
-		setFligthCoords((prev) =>
-			prev.filter((item) => item.lat !== smallObj.lat && item.lng !== smallObj.lng)
-		);
+
+		if (obj.coords) {
+			const smallObj = {
+				lat: obj.coords[0],
+				lng: obj.coords[1]
+			};
+			setFligthCoords((prev) =>
+				prev.filter((item) => item[0] !== smallObj.lat && item[1] !== smallObj.lng)
+			);
+		}
 	};
 
 	const onSelectText = async (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -32,15 +35,14 @@ function TabFlights({ setFligthCoords }: TabFlightsProps) {
 			const coordinates = AllDecCoord.get(selectedText);
 
 			if (coordinates) {
-				setFligthCoords((prev) => [...prev, { lat: coordinates[0], lng: coordinates[1] }]);
-			}
+				setFligthCoords((prev) => [...prev, [coordinates[0], coordinates[1]]]);
 
-			const pointData: ISelectedPoint = {
-				point: selectedText,
-				lat: coordinates ? coordinates[0] : null,
-				lng: coordinates ? coordinates[1] : null
-			};
-			setPointsSelected((prev) => [...prev, pointData]);
+				const pointData: ISelectedPoint = {
+					point: selectedText,
+					coords: [coordinates[0], coordinates[1]]
+				};
+				setPointsSelected((prev) => [...prev, pointData]);
+			}
 		}
 
 		if (selectedText.length > 10) {
@@ -51,12 +53,11 @@ function TabFlights({ setFligthCoords }: TabFlightsProps) {
 				const coordinates = calcResultCoordinates(tepmlatedCoord);
 
 				if (coordinates) {
-					setFligthCoords((prev) => [...prev, { lat: coordinates.lat, lng: coordinates.lng }]);
+					setFligthCoords((prev) => [...prev, [coordinates[0], coordinates[1]]]);
 
 					const pointData: ISelectedPoint = {
 						point: '[coord]',
-						lat: coordinates.lat,
-						lng: coordinates.lng
+						coords: [coordinates[0], coordinates[1]]
 					};
 					setPointsSelected((prev) => [...prev, pointData]);
 				}
@@ -87,7 +88,7 @@ function TabFlights({ setFligthCoords }: TabFlightsProps) {
 			{pointsSelected.map((obj, index) => (
 				<div key={obj.point + index} className={styles.pointsItem}>
 					<span>{obj.point}</span>
-					{obj.lat ? <span>{obj.lat}, {obj.lng}	</span> : <span>Нет в базе</span>}
+					{obj.coords ? <span>{obj.coords[0]}, {obj.coords[1]}	</span> : <span>Нет в базе</span>}
 					<span className={styles.delete}>
 						<DeleteIcon onClick={() => onDeletePoint(obj)} />
 					</span>

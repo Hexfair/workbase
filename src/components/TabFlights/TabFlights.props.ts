@@ -1,6 +1,6 @@
-import { ICoordinate } from '../../@types/ICoordinate.interface';
+import { Coordinate } from '../../@types/Coordinate.type';
 //===========================================================================================================
 
 export interface TabFlightsProps {
-	setFligthCoords: React.Dispatch<React.SetStateAction<ICoordinate[]>>;
+	setFligthCoords: React.Dispatch<React.SetStateAction<Coordinate[]>>;
 }

@@ -3,7 +3,7 @@ import styles from './TabNotams.module.scss';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
 import { reg1, reg2, reg3 } from './TabNotams.regexp';
 import { TabNotamsProps } from './TabNotams.props';
-import { ICoordinate } from '../../@types/ICoordinate.interface';
+import { Coordinate } from '../../@types/Coordinate.type';
 //=========================================================================================================================
 
 function TabNotams({ setNotamCoords }: TabNotamsProps) {
@@ -12,24 +12,24 @@ function TabNotams({ setNotamCoords }: TabNotamsProps) {
 	const searchNotam = () => {
 		const match = textareaText.match(reg1) || textareaText.match(reg2) || textareaText.match(reg3);
 
-		if (match) {
-			const arr = textareaText.split('\n\n');
-			for (const el of arr) {
-				const arrItem: ICoordinate[][] = [];
-				const elMatch = el.match(reg1) || el.match(reg2) || el.match(reg3);
-				const coordItem: ICoordinate[] = [];
+		if (!match) return;
 
-				if (elMatch && elMatch.length > 3) {
-					elMatch.forEach((item) => {
-						const tepmlatedCoord = calcTepmlateCoordinates(item.replaceAll(/[-|.|\s]/g, ''));
-						const coordinates = calcResultCoordinates(tepmlatedCoord);
-						coordinates && coordItem.push(coordinates);
-					});
-				}
-				if (coordItem.length > 0) {
-					arrItem.push(coordItem);
-					setNotamCoords((prev) => [...prev, arrItem]);
-				}
+		const arr = textareaText.split('\n\n');
+		for (const el of arr) {
+			const arrItem: Coordinate[][] = [];
+			const elMatch = el.match(reg1) || el.match(reg2) || el.match(reg3);
+			const coordItem: Coordinate[] = [];
+
+			if (elMatch && elMatch.length > 3) {
+				elMatch.forEach((item) => {
+					const tepmlatedCoord = calcTepmlateCoordinates(item.replaceAll(/[-|.|\s]/g, ''));
+					const coordinates = calcResultCoordinates(tepmlatedCoord);
+					coordinates && coordItem.push(coordinates);
+				});
+			}
+			if (coordItem.length > 0) {
+				arrItem.push(coordItem);
+				setNotamCoords((prev) => [...prev, arrItem]);
 			}
 		}
 	};

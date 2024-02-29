@@ -1,5 +1,7 @@
+import { Coordinate } from './Coordinate.type';
+
 export interface IDifference {
-	diffNotam: number[][][][],
-	diffArea: number[][][][]
+	diffNotam: Coordinate[][][],
+	diffArea: Coordinate[][][]
 }
 

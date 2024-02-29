@@ -1,4 +1,6 @@
-export const dataArea = [
+import { IArea } from '../@types/IArea.interface';
+
+export const dataArea: IArea[] = [
 	{
 		'name': 'Alpha Area',
 		'area': [[40.0, -90.00], [42.0, -83.00], [41.0, -80.00], [38.0, -82.00], [36.0, -90.00], [40.0, -90.00]]

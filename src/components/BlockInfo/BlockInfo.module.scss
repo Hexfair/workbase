@@ -3,7 +3,6 @@
 	bottom: 0px;
 	left: 50%;
 	transform: translateX(-50%);
-	width: 380px;
 	background-color: white;
 	justify-content: space-between;
 	align-items: center;
@@ -11,21 +10,14 @@
 	padding: 10px;
 	display: flex;
 	border-radius: 5px;
-}
+	width: 210px;
 
-.square {
-	font-size: 16px;
-}
-
-.procent {
-	text-align: center;
-
-	p:first-child {
+	span:first-child {
 		font-size: 20px;
 		font-weight: 600;
 	}
 
-	p:last-child {
+	span:last-child {
 		font-size: 28px;
 		font-weight: 600;
 	}

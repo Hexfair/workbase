@@ -23,40 +23,40 @@ export default function MapLeaflet(props: MapLeafletProps) {
 
 	const [dataDifference, setDataDifference] = React.useState<IDifference>({ diffNotam: [], diffArea: [] });
 	const [dataIntersect, setDataIntersect] = React.useState<number[][][] | null>(null);
-	const isNotEmpty = notamCoords.length > 0 || fligthCoords.length > 0 || firCoords.center.length > 0 || dataDifference;
+	const isNotEmpty = notamCoords.length > 0 || fligthCoords.length > 0 || firCoords || dataDifference;
 
 	const getRecenter = () => {
-		if (notamCoords.length > 0) return { lat: notamCoords[0][0][0].lat, lng: notamCoords[0][0][0].lng };
-		if (fligthCoords.length > 0) return { lat: fligthCoords[0].lat, lng: fligthCoords[0].lng };
-		if (firCoords.center.length > 0) return { lat: firCoords.center[0], lng: firCoords.center[1] };
+		if (notamCoords.length > 0) return { lat: notamCoords[0][0][0][0], lng: notamCoords[0][0][0][1] };
+		if (fligthCoords.length > 0) return { lat: fligthCoords[0][0], lng: fligthCoords[0][1] };
+		if (firCoords && firCoords.center.length > 0) return { lat: firCoords.center[0], lng: firCoords.center[1] };
 		return MAP_CENTER;
 	};
 
 	const clearMap = () => {
 		clearAll();
 		setDataDifference({ diffNotam: [], diffArea: [] });
-	}
+	};
 
 	React.useEffect(() => {
 		if (notamCoords.length > 0 && areaCoords.area.length > 3) {
 			const p1 = notamCoords[0].map(item => {
-				return item.map(obj => ([obj.lat, obj.lng]))
-			})
+				return item.map(obj => ([obj[0], obj[1]]));
+			});
 
 			const p2 = [areaCoords.area];
 
-			let poly1 = turf.polygon(p1);
-			let poly2 = turf.polygon(p2);
+			const poly1 = turf.polygon(p1);
+			const poly2 = turf.polygon(p2);
 
-			let intersection = turf.intersect(poly1, poly2);
+			const intersection = turf.intersect(poly1, poly2);
 
 			if (intersection) {
-				setDataIntersect(intersection.geometry.coordinates)
+				setDataIntersect(intersection.geometry.coordinates);
 			} else {
-				setDataIntersect(null)
+				setDataIntersect(null);
 			}
 		}
-	}, [areaCoords, notamCoords])
+	}, [areaCoords, notamCoords]);
 
 	return (
 		<div className={styles.map}>
@@ -73,14 +73,14 @@ export default function MapLeaflet(props: MapLeafletProps) {
 						>
 							{item.flat().map((obj, index) =>
 								<Marker key={index} position={obj} icon={circleIcon}>
-									<Popup children={`Координаты: ${obj.lat}, ${obj.lng}`} />
+									<Popup children={`Координаты: ${obj[0]}, ${obj[1]}`} />
 								</Marker>)}
 						</Polygon>))}
 
 				<Polyline pathOptions={blueOptions} positions={fligthCoords} />
 				{fligthCoords.length > 0 && fligthCoords.map((obj, index) =>
 					<Marker key={index} position={obj} icon={index === 0 || index === fligthCoords.length - 1 ? circleIcon : squareIcon}>
-						<Popup children={`Координаты: ${obj.lat}, ${obj.lng}`} />
+						<Popup children={`Координаты: ${obj[0]}, ${obj[1]}`} />
 					</Marker>)}
 
 				{areaCoords.area.length > 0 &&
@@ -98,12 +98,12 @@ export default function MapLeaflet(props: MapLeafletProps) {
 					>
 					</Polygon>}
 
-				{firCoords.area.length > 0 && firCoords.area
+				{firCoords && firCoords.area.length > 0 && firCoords.area
 					.map((item, index) => (
 						<Polygon
 							key={`${index} ${item[0]} ${item[1]}`}
 							pathOptions={areaOptions}
-							positions={item.map(obj => ({ lat: obj[0], lng: obj[1] }))}
+							positions={item.map(obj => ([obj[0], obj[1]]))}
 						>
 							<Tooltip sticky>{firCoords.icao} - {firCoords.name} ({firCoords.country})</Tooltip>
 						</Polygon>))}

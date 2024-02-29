@@ -1,4 +1,4 @@
-import { ICoordinate } from '../@types/ICoordinate.interface';
+import { Coordinate } from '../@types/Coordinate.type';
 //===========================================================================================================
 export type SideTypes = 'N' | 'S' | 'W' | 'E';
 //=========================================================================================================================
@@ -38,7 +38,7 @@ export const calcTepmlateCoordinates = (item: string) => {
 	}
 };
 
-export const calcResultCoordinates = (item: string): ICoordinate | undefined => {
+export const calcResultCoordinates = (item: string): Coordinate | undefined => {
 	const degLat = Number(item.slice(0, 2));
 	const minLat = Number(item.slice(2, 4));
 	const secLat = Number(item.slice(4, 9));
@@ -51,5 +51,5 @@ export const calcResultCoordinates = (item: string): ICoordinate | undefined => 
 	const sideLng = item[20].toUpperCase() as SideTypes;
 	const longitude = transformCoordinates(degLng, minLng, secLng, sideLng);
 
-	if (latitude && longitude) return { lat: latitude, lng: longitude };
+	if (latitude && longitude) return [latitude, longitude];
 };
