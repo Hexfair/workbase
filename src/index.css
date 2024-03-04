@@ -47,10 +47,23 @@ a {
 	display: none !important;
 }
 
+.leaflet-popup-content {
+	font-size: 10px !important;
+}
+
 .main {
 	display: grid;
 	gap: 20px;
 	grid-template-columns: 1fr 600px;
 	height: 95vh;
 	overflow: hidden;
+}
+
+.main.loading {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
 }

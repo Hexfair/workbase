@@ -1,7 +1,7 @@
-import styles from './Snipper.module.scss';
+import styles from './Spinner.module.scss';
 //=========================================================================================================================
 
-function Snipper() {
+function Spinner() {
 	return (
 		<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
 			<g className={styles['spinner_Wezc']}>
@@ -17,4 +17,4 @@ function Snipper() {
 	);
 }
 
-export default Snipper;
+export default Spinner;

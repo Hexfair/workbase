@@ -2,10 +2,9 @@ import React, { Suspense } from 'react';
 import styles from './MapTabsSide.module.scss';
 import TabNotams from '../TabNotams/TabNotams';
 import TabFlights from '../TabFlights/TabFlights';
-import Snipper from '../UI/Snipper/Snipper';
-import TabArea from '../TabArea/TabArea';
 import { TabsType } from '../../@types/Tabs.type';
 import { useStore } from '../../store/store';
+import Spinner from '../UI/Spinner/Spinner';
 const TabFir = React.lazy(() => import('../TabFir/TabFir'));
 //===========================================================================================================
 
@@ -34,21 +33,14 @@ export default function MapTabsSide() {
 					onClick={() => onChangeActiveTab('fir')}
 				>FIR
 				</button>
-				<button
-					className={`${styles.tab} ${activeTab === 'area' && styles.active}`}
-					onClick={() => onChangeActiveTab('area')}
-				>AREA
-				</button>
 			</div>
 			<div className={styles.content}>
 				{activeTab === 'notams' && <TabNotams />}
 				{activeTab === 'flights' && <TabFlights />}
 				{activeTab === 'fir' &&
-					<Suspense fallback={<div className={styles.loading}><Snipper /></div>}>
+					<Suspense fallback={<div className={styles.loading}><Spinner /></div>}>
 						<TabFir />
 					</Suspense>}
-				{activeTab === 'area' && <TabArea />}
-
 			</div>
 		</div>
 	);

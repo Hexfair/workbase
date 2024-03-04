@@ -1,1 +1,1 @@
-export type TabsType = 'notams' | 'flights' | 'fir' | 'area';
+export type TabsType = 'notams' | 'flights' | 'fir';

@@ -1,7 +1,10 @@
 import { Coordinate } from './Coordinate.type';
 
 export interface IArea {
+	id: number;
 	name: string;
-	area: Coordinate[];
+	country: string;
+	rocket: string;
+	area: Coordinate[][];
 	diff?: number;
 }

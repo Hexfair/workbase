@@ -6,7 +6,8 @@ const initialState: StateStore = {
 	notamCoords: [],
 	fligthCoords: [],
 	firCoords: null,
-	areaCoords: { name: '', area: [] }
+	areaCoords: { name: '', area: [], country: '', rocket: '', id: 0 },
+	isOpenModal: false
 };
 
 export const useStore = create<StateStore & ActionsStore>()((set, get) => ({
@@ -16,7 +17,10 @@ export const useStore = create<StateStore & ActionsStore>()((set, get) => ({
 	},
 	setNotamCoords: (payload) => {
 		const prevNotamCoords = get().notamCoords;
-		set({ notamCoords: [...prevNotamCoords, ...payload] });
+		set({ notamCoords: [...prevNotamCoords, payload] });
+	},
+	resetNotamCoords: () => {
+		set({ notamCoords: [] });
 	},
 	setFligthCoords: (payload) => {
 		const prevFlightCoords = get().fligthCoords;
@@ -31,7 +35,9 @@ export const useStore = create<StateStore & ActionsStore>()((set, get) => ({
 	setAreaCoords: (payload) => {
 		set({ areaCoords: payload });
 	},
-
+	setIsOpenModal: (payload) => {
+		set({ isOpenModal: payload })
+	},
 	reset: () => {
 		set(initialState);
 	}

@@ -48,8 +48,6 @@ function TabFir() {
 					<div className={styles.infoSize}>Size: {selectedFir.size} km<sup className={styles.sup}>2</sup></div>
 					<div className={styles.infoAirports}>Airports: {selectedFir.airports}</div>
 					<div className={styles.infoCenter}>Center: {selectedFir.center[0]}, {selectedFir.center[1]}</div>
-
-
 				</div>}
 		</div >
 	);
