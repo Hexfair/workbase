@@ -184,8 +184,8 @@ export const BlockModal = () => {
 							className={`${styles.input} ${error.polygon1.length > 0 && styles.red}`}
 							value={polygon.polygon1}
 							onChange={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
-							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел (минимум три)'
+							pattern="(\d{4}(\d{2})?[NS](\s)?\d{5}(\d{2})?[WE](\s)?){3,}"
 						/>
 					</label>
 					<label className={styles.label}>
@@ -196,8 +196,8 @@ export const BlockModal = () => {
 							className={`${styles.input} ${error.polygon2.length > 0 && styles.red}`}
 							value={polygon.polygon2}
 							onChange={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
-							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел (минимум три)'
+							pattern="(\d{4}(\d{2})?[NS](\s)?\d{5}(\d{2})?[WE](\s)?){3,}"
 						/>
 					</label>
 					<label className={styles.label}>
@@ -208,8 +208,8 @@ export const BlockModal = () => {
 							className={`${styles.input} ${error.polygon3.length > 0 && styles.red}`}
 							value={polygon.polygon3}
 							onChange={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
-							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел (минимум три)'
+							pattern="(\d{4}(\d{2})?[NS](\s)?\d{5}(\d{2})?[WE](\s)?){3,}"
 						/>
 					</label>
 					<label className={styles.label}>
@@ -220,8 +220,8 @@ export const BlockModal = () => {
 							className={`${styles.input} ${error.polygon4.length > 0 && styles.red}`}
 							value={polygon.polygon4}
 							onChange={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
-							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел (минимум три)'
+							pattern="(\d{4}(\d{2})?[NS](\s)?\d{5}(\d{2})?[WE](\s)?){3,}"
 						/>
 					</label>
 					<label className={styles.label}>
@@ -232,8 +232,8 @@ export const BlockModal = () => {
 							className={`${styles.input} ${error.polygon5.length > 0 && styles.red}`}
 							value={polygon.polygon5}
 							onChange={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
-							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел (минимум три)'
+							pattern="(\d{4}(\d{2})?[NS](\s)?\d{5}(\d{2})?[WE](\s)?){3,}"
 						/>
 					</label>
 					<div className={styles.row}>
@@ -246,7 +246,7 @@ export const BlockModal = () => {
 								value={polygon.circle}
 								onChange={onChangePolygon}
 								placeholder='Координаты центра круга'
-								pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){1}"
+								pattern="(\d{4}(\d{2})?[NS](\s)?\d{5}(\d{2})?[WE](\s)?){1}"
 							/>
 						</label>
 						<label className={`${styles.label} ${styles.radius}`}>
@@ -280,12 +280,3 @@ export const BlockModal = () => {
 		</Modal >
 	)
 }
-
-/*
-	id: number,
-	mmsi: number,
-	name: string,
-	base: string,
-	acronym: string,
-	type: FiltersByType,
-*/
