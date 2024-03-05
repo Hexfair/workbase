@@ -2,26 +2,24 @@ import React from 'react';
 import styles from './BlockModal.module.scss';
 import Modal from 'react-modal';
 import { useStore } from '../../store/store';
-import { calcResultCoordinates } from '../../helpers/map-coordinates.helper';
+import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
 //=========================================================================================================================
 
-type ErrorStateType = {
+type StateType = {
 	polygon1: string,
 	polygon2: string,
 	polygon3: string,
 	polygon4: string,
 	polygon5: string,
 	circle: string,
-	status: boolean
 }
-const initialErrorState: ErrorStateType = {
+const initialState: StateType = {
 	polygon1: '',
 	polygon2: '',
 	polygon3: '',
 	polygon4: '',
 	polygon5: '',
 	circle: '',
-	status: false,
 }
 
 export const BlockModal = () => {
@@ -30,38 +28,28 @@ export const BlockModal = () => {
 	const [name, setName] = React.useState<string>('');
 	const [country, setCountry] = React.useState<string>('');
 	const [rocket, setRocket] = React.useState<string>('');
-	const [polygon1, setPolygon1] = React.useState<string>('');
-	const [polygon2, setPolygon2] = React.useState<string>('');
-	const [polygon3, setPolygon3] = React.useState<string>('');
-	const [polygon4, setPolygon4] = React.useState<string>('');
-	const [polygon5, setPolygon5] = React.useState<string>('');
-	const [circle, setCircle] = React.useState<string>('');
+	const [polygon, setPolygon] = React.useState<StateType>(initialState);
 	const [radius, setRadius] = React.useState<string>('');
-	const [error, setError] = React.useState<ErrorStateType>(initialErrorState);
+	const [error, setError] = React.useState<StateType>(initialState);
 
 	const inputRef = React.useRef<HTMLInputElement>(null);
 
-	const onChangePolygon = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (event.target.value.length === 0) return;
-		const value = event.target.value;
-		for (let item of value.trim().split(' ')) {
-			if (!(/\d{6}[N|S]\d{7}[W|E]/.test(item))) {
-				setError(prev => ({ ...prev, [event.target.name]: 'wd2d2d2wdw', status: true }))
-			}
-			else (
-				setError(prev => ({ ...prev, [event.target.name]: '', status: false }))
-			)
-		}
+	const isValidForm = () => {
+		return Boolean(error.polygon1 || error.polygon2 || error.polygon3 || error.polygon4 || error.polygon5 || error.circle)
 	}
 
 	const calcCoords = (polygon: string) => {
 		const arr = polygon.trim().split(' ');
 
 		if (arr.length === 1) {
-			return calcResultCoordinates(arr[0])!
+			const tepmlatedCoord = calcTepmlateCoordinates(arr[0]);
+			return calcResultCoordinates(tepmlatedCoord)!;
 		}
 
-		const arrPoly = arr.filter(obj => obj.length > 0).map(obj => calcResultCoordinates(obj)!);
+		const arrPoly = arr.filter(obj => obj.length > 0).map(obj => {
+			const tepmlatedCoord = calcTepmlateCoordinates(obj);
+			return calcResultCoordinates(tepmlatedCoord);
+		});
 
 		if (arrPoly[0] !== arrPoly[arrPoly.length - 1]) {
 			arrPoly.push(arrPoly[0]);
@@ -77,12 +65,17 @@ export const BlockModal = () => {
 			return alert('Неверный формат РАДИУСА');
 		}
 
+		if (name.length < 4) {
+			return alert('Введите название (не менее 3 символов)');
+		}
+
 		const area = [
-			polygon1.length > 0 && calcCoords(polygon1),
-			polygon2.length > 0 && calcCoords(polygon2),
-			polygon3.length > 0 && calcCoords(polygon3),
-			polygon4.length > 0 && calcCoords(polygon4),
-			circle.length > 0 && [[...calcCoords(circle), Number(radius)]],
+			polygon.polygon1.length > 0 && calcCoords(polygon.polygon1),
+			polygon.polygon2.length > 0 && calcCoords(polygon.polygon2),
+			polygon.polygon3.length > 0 && calcCoords(polygon.polygon3),
+			polygon.polygon4.length > 0 && calcCoords(polygon.polygon4),
+			polygon.polygon5.length > 0 && calcCoords(polygon.polygon5),
+			polygon.circle.length > 0 && [[...calcCoords(polygon.circle), Number(radius)]],
 		].filter(obj => obj);
 
 		const sendData = {
@@ -108,16 +101,30 @@ export const BlockModal = () => {
 			setName('');
 			setCountry('');
 			setRocket('');
-			setPolygon1('');
-			setPolygon2('');
-			setPolygon3('');
-			setPolygon4('');
-			setPolygon5('');
-			setCircle('');
+			setPolygon(initialState);
 			setRadius('');
-			setError(initialErrorState);
+			setError(initialState);
 		} else {
 			alert('Ошибка при добавлении данных');
+		}
+	}
+
+	const onCancelModal = () => {
+		setName('');
+		setCountry('');
+		setRocket('');
+		setPolygon(initialState);
+		setRadius('');
+		setError(initialState);
+		setIsOpenModal(false);
+	}
+
+	const onChangePolygon = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setPolygon(prev => ({ ...prev, [event.target.name]: event.target.value }))
+		if (!event.target.validity.valid) {
+			setError(prev => ({ ...prev, [event.target.name]: 'Error', status: true }))
+		} else {
+			setError(prev => ({ ...prev, [event.target.name]: '', status: false }))
 		}
 	}
 
@@ -132,7 +139,7 @@ export const BlockModal = () => {
 			<div className={styles.content}>
 				<form onSubmit={onSubmitForm} className={styles.form} id="form">
 					<label className={styles.label}>
-						<span className={styles.span}>Name</span>
+						<span className={styles.span}>Название</span>
 						<input
 							name='name'
 							type='text'
@@ -145,7 +152,7 @@ export const BlockModal = () => {
 
 					<div className={styles.row}>
 						<label className={`${styles.label} ${styles.country}`}>
-							<span className={styles.span}>Country</span>
+							<span className={styles.span}>Страна</span>
 							<input
 								name='country'
 								type='text'
@@ -157,7 +164,7 @@ export const BlockModal = () => {
 
 						</label>
 						<label className={`${styles.label} ${styles.rocket}`}>
-							<span className={styles.span}>Rocket</span>
+							<span className={styles.span}>Ракета</span>
 							<input
 								name='rocket'
 								type='text'
@@ -170,80 +177,80 @@ export const BlockModal = () => {
 					</div>
 
 					<label className={styles.label}>
-						<span className={styles.span}>Polygon 1</span>
+						<span className={styles.span}>Полигон 1</span>
 						<input
 							name='polygon1'
 							type='text'
 							className={`${styles.input} ${error.polygon1.length > 0 && styles.red}`}
-							value={polygon1}
-							onChange={(e) => setPolygon1(e.target.value)}
-							onBlur={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W через пробел'
+							value={polygon.polygon1}
+							onChange={onChangePolygon}
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
+							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
 						/>
 					</label>
 					<label className={styles.label}>
-						<span className={styles.span}>Polygon 2</span>
+						<span className={styles.span}>Полигон 2</span>
 						<input
 							name='polygon2'
 							type='text'
 							className={`${styles.input} ${error.polygon2.length > 0 && styles.red}`}
-							value={polygon2}
-							onChange={(e) => setPolygon2(e.target.value)}
-							onBlur={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W через пробел'
+							value={polygon.polygon2}
+							onChange={onChangePolygon}
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
+							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
 						/>
 					</label>
 					<label className={styles.label}>
-						<span className={styles.span}>Polygon 3</span>
+						<span className={styles.span}>Полигон 3</span>
 						<input
 							name='polygon3'
 							type='text'
 							className={`${styles.input} ${error.polygon3.length > 0 && styles.red}`}
-							value={polygon3}
-							onChange={(e) => setPolygon3(e.target.value)}
-							onBlur={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W через пробел'
+							value={polygon.polygon3}
+							onChange={onChangePolygon}
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
+							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
 						/>
 					</label>
 					<label className={styles.label}>
-						<span className={styles.span}>Polygon 4</span>
+						<span className={styles.span}>Полигон 4</span>
 						<input
 							name='polygon4'
 							type='text'
 							className={`${styles.input} ${error.polygon4.length > 0 && styles.red}`}
-							value={polygon4}
-							onChange={(e) => setPolygon4(e.target.value)}
-							onBlur={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W через пробел'
+							value={polygon.polygon4}
+							onChange={onChangePolygon}
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
+							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
 						/>
 					</label>
 					<label className={styles.label}>
-						<span className={styles.span}>Polygon 5</span>
+						<span className={styles.span}>Полигон 5</span>
 						<input
 							name='polygon5'
 							type='text'
 							className={`${styles.input} ${error.polygon5.length > 0 && styles.red}`}
-							value={polygon5}
-							onChange={(e) => setPolygon5(e.target.value)}
-							onBlur={onChangePolygon}
-							placeholder='Координаты в формате 112233N1112233W через пробел'
+							value={polygon.polygon5}
+							onChange={onChangePolygon}
+							placeholder='Координаты в формате 112233N1112233W или 1122N11122W через пробел'
+							pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){2,}"
 						/>
 					</label>
 					<div className={styles.row}>
 						<label className={`${styles.label} ${styles.circle}`}>
-							<span className={styles.span}>Circle</span>
+							<span className={styles.span}>Круг</span>
 							<input
 								name='circle'
 								type='text'
 								className={`${styles.input} ${error.circle.length > 0 && styles.red}`}
-								value={circle}
-								onChange={(e) => setCircle(e.target.value)}
-								onBlur={onChangePolygon}
+								value={polygon.circle}
+								onChange={onChangePolygon}
 								placeholder='Координаты центра круга'
+								pattern="(\d{4,6}[NS]\s?\d{4,7}[WE]\s?){1}"
 							/>
 						</label>
 						<label className={`${styles.label} ${styles.radius}`}>
-							<span className={styles.span}>Radius</span>
+							<span className={styles.span}>Радиус</span>
 							<input
 								name='radius'
 								type='text'
@@ -261,12 +268,12 @@ export const BlockModal = () => {
 				<button
 					className={styles.button}
 					onClick={() => inputRef && inputRef.current && inputRef.current.click()}
-					disabled={error.status}
+					disabled={isValidForm()}
 				>Сохранить
 				</button>
 				<button
 					className={styles.button}
-					onClick={() => setIsOpenModal(false)}
+					onClick={onCancelModal}
 				>Отмена
 				</button>
 			</div>

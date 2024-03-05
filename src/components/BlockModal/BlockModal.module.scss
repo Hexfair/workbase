@@ -66,6 +66,10 @@
 		width: 100%;
 		border: 1px solid transparent;
 
+		&:invalid {
+			background-color: var(--hover-clear);
+		}
+
 		&.red {
 			border: 1px solid red;
 		}

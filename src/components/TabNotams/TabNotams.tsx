@@ -40,19 +40,6 @@ function TabNotams() {
 		searchNotams(true);
 	};
 
-	const setFilterProcent = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = Number(event.target.value);
-		if (value <= 0) {
-			setCountFilter(0);
-			return;
-		}
-		if (value >= 100) {
-			setCountFilter(100);
-			return;
-		}
-		setCountFilter(value);
-	};
-
 	const searchNotams = (filter: boolean) => {
 		let index = 0;
 
@@ -187,7 +174,14 @@ function TabNotams() {
 				<button className={styles.button} onClick={onDiffNotams}>Построить и отфильтровать</button>
 				<div className={styles.procent}>
 					<span>%:</span>
-					<input className={styles.input} type="number" value={countFilter} onChange={setFilterProcent} /></div>
+					<input
+						className={styles.input}
+						type="number"
+						min="0"
+						max="100"
+						value={countFilter}
+						onChange={(e) => setCountFilter(Number(e.target.value))} />
+				</div>
 			</div>
 			{selectedDiffArea && <div className={styles.notam}>{selectedDiffArea.notam.text}</div>}
 		</div >
