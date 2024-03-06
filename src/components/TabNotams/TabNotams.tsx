@@ -61,6 +61,9 @@ function TabNotams() {
 				const coordinates = calcResultCoordinates(tepmlatedCoord);
 				coordinates && coordItem.push(coordinates);
 			});
+			if (coordItem[0][0] !== coordItem[coordItem.length - 1][0]
+				&& coordItem[0][1] !== coordItem[coordItem.length - 1][1]
+			) coordItem.push(coordItem[0])
 
 			if (!filter) {
 				if (coordItem.length > 3) {
@@ -91,10 +94,10 @@ function TabNotams() {
 					};
 
 					setAllDiffAreas(prev => [...prev, result]);
+					index = index + 1;
 				}
 			}
 
-			index = index + 1;
 		}
 	};
 
@@ -144,9 +147,9 @@ function TabNotams() {
 							className={`${styles.item} ${selectedDiffArea?.id === obj.id && styles.select}`}
 							onClick={() => onClickDiffArea(obj.id)}>
 							<span className={`${styles.diff} 
-													${obj.diff && obj.diff < 50 && styles.red}
-													${(obj.diff && obj.diff >= 50) && (obj.diff && obj.diff < 80) && styles.yellow}
-													${obj.diff && obj.diff >= 80 && styles.green}`}
+													${obj.diff < 50 && styles.red}
+													${obj.diff >= 50 && obj.diff < 80 && styles.yellow}
+													${obj.diff >= 80 && styles.green}`}
 							>{obj.diff ? `${obj.diff}%` : ''}
 							</span>
 							<span className={`${styles.name} ${styles.td}`}>{obj.area.name}</span>
@@ -158,12 +161,7 @@ function TabNotams() {
 						key={obj.id}
 						className={`${styles.item} ${selectedArea?.name === obj.name && styles.select}`}
 						onClick={() => onClickArea(obj.name)}>
-						<span className={`${styles.diff} 
-													${obj.diff && obj.diff < 50 && styles.red}
-													${(obj.diff && obj.diff >= 50) && (obj.diff && obj.diff < 80) && styles.yellow}
-													${obj.diff && obj.diff >= 80 && styles.green}`}
-						>{isFilter && obj.diff ? `${obj.diff}%` : ''}
-						</span>
+						<span className={styles.diff}></span>
 						<span className={`${styles.name} ${styles.td}`}>{obj.name}</span>
 					</div>
 				))}

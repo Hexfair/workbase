@@ -48,10 +48,10 @@ export const BlockModal = () => {
 
 		const arrPoly = arr.filter(obj => obj.length > 0).map(obj => {
 			const tepmlatedCoord = calcTepmlateCoordinates(obj);
-			return calcResultCoordinates(tepmlatedCoord);
+			return calcResultCoordinates(tepmlatedCoord)!;
 		});
 
-		if (arrPoly[0] !== arrPoly[arrPoly.length - 1]) {
+		if (arrPoly[0][0] !== arrPoly[arrPoly.length - 1][0] && arrPoly[0][1] !== arrPoly[arrPoly.length - 1][1]) {
 			arrPoly.push(arrPoly[0]);
 		}
 

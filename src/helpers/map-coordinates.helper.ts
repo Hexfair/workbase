@@ -12,26 +12,26 @@ export const transformCoordinates = (d: number, m: number, s: number, side: Side
 
 export const calcTepmlateCoordinates = (item: string) => {
 	switch (item.length) {
-	case 10: // 0000N0000W
-		return item.slice(0, 4) + '00' + item[4] + '0' + item.slice(5, 9) + '00' + item[9];
-	case 11: // 0000N00000W 
-		return item.slice(0, 4) + '00' + item[4] + item.slice(5, 10) + '00' + item[10];
-	case 13: // 204800N15831W
-		return item.slice(0, 12) + '00' + item[12];
-	case 14: // 000000N000000W
-		return item.slice(0, 7) + '0' + item.slice(7);
-	case 15: // 000000N0000000W
-		return item;
-	case 16:	// 0000000N0000000W
-		return item.slice(0, 6) + item[7] + '0' + item.slice(8, 14) + item[15];
-	case 17: // 0000000N00000000W
-		return item.slice(0, 6) + item[7] + item.slice(8, 15) + item[16];
-	case 18: // 00000000N00000000W
-		return item.slice(0, 6) + item[8] + '0' + item.slice(9, 15) + item[17];
-	case 19: // 00000000N000000000W
-		return item.slice(0, 6) + item[8] + item.slice(9, 16) + item[18];
-	default:
-		return item;
+		case 10: // 0000N0000W
+			return item.slice(0, 4) + '00' + item[4] + '0' + item.slice(5, 9) + '00' + item[9];
+		case 11: // 0000N00000W 
+			return item.slice(0, 4) + '00' + item[4] + item.slice(5, 10) + '00' + item[10];
+		case 13: // 204800N15831W
+			return item.slice(0, 12) + '00' + item[12];
+		case 14: // 000000N000000W
+			return item.slice(0, 7) + '0' + item.slice(7);
+		case 15: // 000000N0000000W
+			return item;
+		case 16:	// 0000000N0000000W
+			return item.slice(0, 6) + item[7] + '0' + item.slice(8, 14) + item[15];
+		case 17: // 0000000N00000000W
+			return item.slice(0, 6) + item[7] + item.slice(8, 15) + item[16];
+		case 18: // 00000000N00000000W
+			return item.slice(0, 6) + item[8] + '0' + item.slice(9, 15) + item[17];
+		case 19: // 00000000N000000000W
+			return item.slice(0, 6) + item[8] + item.slice(9, 16) + item[18];
+		default:
+			return item;
 	}
 };
 

@@ -55,9 +55,9 @@ export default function MapLeaflet() {
 						const poly2 = turf.polygon([viewCoords]);
 						return turf.booleanWithin(poly1, poly2);
 					})
-					.map((item, index) => (
+					.map(item => (
 						<Polygon
-							key={`${index}${item.text}`}
+							key={item.text}
 							pathOptions={purpleOptions}
 							positions={item.polygon.map(obj => obj)}
 						>
