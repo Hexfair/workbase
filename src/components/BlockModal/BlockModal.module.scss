@@ -4,7 +4,7 @@
 	justify-content: center;
 	background: var(--hover-fir);
 	width: 950px;
-	height: 550px;
+	height: 750px;
 	position: relative;
 	border: 1px solid var(--select-fir);
 	border-radius: 0.3rem;
@@ -111,25 +111,43 @@
 	justify-content: center;
 	column-gap: 30px;
 	margin-top: 10px;
+	margin-bottom: 30px;
+}
 
-	.button {
-		height: 30px;
-		min-width: 150px;
-		padding: 0px 15px;
-		background-color: var(--primary);
-		color: var(--white);
-		cursor: pointer;
-		border-radius: 5px;
-		transition: all 0.2s ease 0s;
-		font-size: 16px;
+.button {
+	height: 30px;
+	min-width: 150px;
+	padding: 0px 15px;
+	background-color: var(--primary);
+	color: var(--white);
+	cursor: pointer;
+	border-radius: 5px;
+	transition: all 0.2s ease 0s;
+	font-size: 16px;
 
-		&:hover {
-			background-color: var(--primary-dark);
-		}
-
-		&:disabled {
-			background-color: var(--secondary-text);
-			cursor: not-allowed;
-		}
+	&.parse {
+		width: 300px;
+		margin: 0 auto;
+		background-color: var(--purple);
 	}
+
+	&:hover {
+		background-color: var(--primary-dark);
+	}
+
+	&:disabled {
+		background-color: var(--secondary-text);
+		cursor: not-allowed;
+	}
+}
+
+.textarea {
+	width: 70%;
+	height: 200px;
+	resize: vertical;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 1px solid var(--purple);
+	font-size: 12px;
 }

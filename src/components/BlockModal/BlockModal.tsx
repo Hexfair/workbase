@@ -3,6 +3,7 @@ import styles from './BlockModal.module.scss';
 import Modal from 'react-modal';
 import { useStore } from '../../store/store';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
+import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
 //=========================================================================================================================
 
 type StateType = {
@@ -31,6 +32,7 @@ export const BlockModal = () => {
 	const [polygon, setPolygon] = React.useState<StateType>(initialState);
 	const [radius, setRadius] = React.useState<string>('');
 	const [error, setError] = React.useState<StateType>(initialState);
+	const [text, setText] = React.useState<string>('');
 
 	const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -84,7 +86,7 @@ export const BlockModal = () => {
 			"rocket": rocket,
 			"area": area
 		};
-
+		console.log(sendData);
 		const response = await fetch(`http://localhost:5050`,
 			{
 				method: 'POST',
@@ -117,6 +119,7 @@ export const BlockModal = () => {
 		setRadius('');
 		setError(initialState);
 		setIsOpenModal(false);
+		setText('');
 	}
 
 	const onChangePolygon = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -125,6 +128,22 @@ export const BlockModal = () => {
 			setError(prev => ({ ...prev, [event.target.name]: 'Error', status: true }))
 		} else {
 			setError(prev => ({ ...prev, [event.target.name]: '', status: false }))
+		}
+	}
+
+	const onParseCoords = () => {
+		const arr = text.split('\n\n').filter(obj => obj.length > 0);
+		if (arr.length >= 6) return alert('Можно добавить только 5 полигонов!');
+
+		for (let i = 0; i < arr.length; i++) {
+			const elMatch = arr[i].match(reg1) || arr[i].match(reg2) || arr[i].match(reg3);
+
+			const coordsString = elMatch?.reduce((acc, item) => {
+				const tepmlatedCoord = calcTepmlateCoordinates(item.replaceAll(/[-|.|\s|//]/g, ''));
+				return acc = acc + tepmlatedCoord + ' ';
+			}, '');
+
+			setPolygon(prev => ({ ...prev, ['polygon' + (i + 1)]: coordsString?.trim() }))
 		}
 	}
 
@@ -277,6 +296,12 @@ export const BlockModal = () => {
 				>Отмена
 				</button>
 			</div>
+			<textarea
+				className={styles.textarea}
+				value={text}
+				onChange={(e) => setText(e.target.value)}
+			/>
+			<button className={`${styles.button} ${styles.parse}`} onClick={onParseCoords}>Распарсить координаты</button>
 		</Modal >
 	)
 }
