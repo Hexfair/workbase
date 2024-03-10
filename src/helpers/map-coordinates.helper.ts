@@ -1,12 +1,15 @@
 import { Coordinate } from '../@types/Coordinate.type';
 //===========================================================================================================
 export type SideTypes = 'N' | 'S' | 'W' | 'E';
+export type SideLat = 'N' | 'S';
+export type SideLng = 'W' | 'E';
 //=========================================================================================================================
 
-export const transformCoordinates = (d: number, m: number, s: number, side: SideTypes): number | undefined => {
+export const transformCoordinates = (d: number, m: number, s: number, side: SideTypes): number => {
 	const decimalCoord = d + (m / 60) + (s / 3600);
 	if (side === 'N' || side === 'E') return Number(decimalCoord.toFixed(3));
 	if (side === 'S' || side === 'W') return Number(decimalCoord.toFixed(3)) * -1;
+	return 0;
 };
 
 
@@ -36,18 +39,18 @@ export const calcTepmlateCoordinates = (item: string) => {
 };
 
 // 000000N0000000W
-export const calcResultCoordinates = (item: string): Coordinate | undefined => {
+export const calcResultCoordinates = (item: string): Coordinate => {
 	const degLat = Number(item.slice(0, 2));
 	const minLat = Number(item.slice(2, 4));
 	const secLat = Number(item.slice(4, 6));
-	const sideLat = item[6].toUpperCase() as SideTypes;
+	const sideLat = item[6].toUpperCase() as SideLat;
 	const latitude = transformCoordinates(degLat, minLat, secLat, sideLat);
 
 	const degLng = Number(item.slice(7, 10));
 	const minLng = Number(item.slice(10, 12));
 	const secLng = Number(item.slice(12, 14));
-	const sideLng = item[14].toUpperCase() as SideTypes;
+	const sideLng = item[14].toUpperCase() as SideLng;
 	const longitude = transformCoordinates(degLng, minLng, secLng, sideLng);
 
-	if (latitude && longitude) return [latitude, longitude];
+	return [latitude, longitude];
 };

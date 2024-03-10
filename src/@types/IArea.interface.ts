@@ -8,3 +8,11 @@ export interface IArea {
 	area: Coordinate[][];
 	diff?: number;
 }
+
+export interface IOutputArea {
+	id: number;
+	name: string;
+	country: string;
+	rocket: string;
+	area: string[];
+}

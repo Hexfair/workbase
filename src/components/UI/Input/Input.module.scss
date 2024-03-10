@@ -1,0 +1,37 @@
+.label {
+	display: grid;
+	grid-template-columns: 100px 1fr;
+	align-items: center;
+}
+
+.span {
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+.input {
+	height: 25px;
+	padding: 2px 10px;
+	border-radius: 3px;
+	font-size: 12px;
+	width: 100%;
+	border: 1px solid transparent;
+
+	&:invalid {
+		background-color: var(--hover-clear);
+	}
+
+	&.red {
+		border: 1px solid red;
+	}
+
+	&::placeholder {
+		font-size: 12px;
+		color: var(--divider);
+	}
+
+	&:focus {
+		border: 1px solid var(--text-primary);
+		outline: none;
+	}
+}

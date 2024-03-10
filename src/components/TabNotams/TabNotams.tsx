@@ -6,6 +6,8 @@ import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
 import { useStore } from '../../store/store';
 import { calcDiffProcent } from '../../helpers/calc-diff-procent.helper';
+import { calcOutputCoords } from '../../helpers/calc-output-coords.helper';
+import DeleteIcon from '../../assets/icon/delete.svg?react';
 // import Snipper from '../UI/Snipper/Snipper';
 //=========================================================================================================================
 
@@ -59,7 +61,7 @@ function TabNotams() {
 			elMatch.forEach((item) => {
 				const tepmlatedCoord = calcTepmlateCoordinates(item.replaceAll(/[-|.|\s|//]/g, ''));
 				const coordinates = calcResultCoordinates(tepmlatedCoord);
-				coordinates && coordItem.push(coordinates);
+				coordItem.push(coordinates);
 			});
 			if (coordItem[0][0] !== coordItem[coordItem.length - 1][0]
 				&& coordItem[0][1] !== coordItem[coordItem.length - 1][1]
@@ -97,12 +99,11 @@ function TabNotams() {
 					index = index + 1;
 				}
 			}
-
 		}
 	};
 
-	const onClickArea = (name: string) => {
-		const findItem: IArea | undefined = output.find(obj => obj.name === name);
+	const onClickArea = (id: number) => {
+		const findItem: IArea | undefined = output.find(obj => obj.id === id);
 		if (findItem) {
 			setAreaCoords(findItem);
 			setSelectedArea(findItem);
@@ -120,11 +121,32 @@ function TabNotams() {
 		}
 	};
 
+	const onDeletePoint = async (id: number, name: string) => {
+		if (confirm(`Вы точно хотите удалить запись "${name}"?`)) {
+			const response = await fetch('http://localhost:5050', {
+				method: 'DELETE',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ id }),
+			});
+
+			if (response.status === 200) {
+				alert('Данные успешно добавлены!');
+				window.location.reload();
+			} else {
+				alert('Ошибка при добавлении данных');
+			}
+		}
+	};
+
 	React.useEffect(() => {
 		const getOutput = async () => {
 			const response = await fetch('http://localhost:5050/json');
 			const data = await response.json();
-			setOutput(data)
+			const result = calcOutputCoords(data);
+			setOutput(result)
 		}
 		getOutput();
 	}, [])
@@ -159,10 +181,13 @@ function TabNotams() {
 				{!isFilter && output.map(obj => (
 					<div
 						key={obj.id}
-						className={`${styles.item} ${selectedArea?.name === obj.name && styles.select}`}
-						onClick={() => onClickArea(obj.name)}>
+						className={`${styles.item} ${selectedArea?.id === obj.id && styles.select}`}
+						onClick={() => onClickArea(obj.id)}>
 						<span className={styles.diff}></span>
 						<span className={`${styles.name} ${styles.td}`}>{obj.name}</span>
+						<span className={styles.delete}>
+							<DeleteIcon onClick={() => onDeletePoint(obj.id, obj.name)} />
+						</span>
 					</div>
 				))}
 			</div>

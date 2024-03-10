@@ -12,7 +12,7 @@
 .body {
 	font-size: 18px;
 	height: 30vh;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .item {
@@ -23,6 +23,7 @@
 	cursor: pointer;
 	transition: all 0.15s ease 0s;
 	color: var(--primary-text);
+	align-items: center;
 
 	&:hover {
 		background-color: var(--hover-fir);
@@ -52,6 +53,26 @@
 			color: var(--green);
 		}
 	}
+
+	.delete {
+		margin-right: 15px;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+
+		svg path {
+			stroke: var(--hover-fir);
+			stroke-width: 0.0504;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+
+		&:hover {
+			svg path {
+				stroke: red;
+			}
+		}
+	}
 }
 
 .icao {
@@ -64,7 +85,7 @@
 
 .name {
 	width: 230px;
-
+	flex: 1;
 	&.td {
 		padding-left: 10px;
 		font-size: 14px;

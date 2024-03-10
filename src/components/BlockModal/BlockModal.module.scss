@@ -1,14 +1,11 @@
 .modal {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	background: var(--hover-fir);
-	width: 950px;
+	width: 1150px;
 	height: 750px;
 	position: relative;
 	border: 1px solid var(--select-fir);
 	border-radius: 0.3rem;
-	padding: 10px;
+	padding: 20px;
 }
 
 .overlay {
@@ -35,10 +32,34 @@
 .content {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	column-gap: 20px;
 	padding: 10px;
 	margin-top: 20px;
+}
+
+.left {
+	width: 100%;
+}
+.right {
+	min-width: 300px;
+	height: 600px;
+	background-color: var(--select-fir);
+	padding: 15px;
+	overflow: auto;
+
+	.item {
+		padding: 5px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: var(--hover-fir);
+		}
+
+		&.select {
+			background-color: var(--hover-fir);
+		}
+	}
 }
 
 .form {
@@ -46,62 +67,26 @@
 	flex-direction: column;
 	row-gap: 10px;
 	width: 100%;
+	margin-bottom: 20px;
+}
 
-	.label {
-		display: grid;
-		grid-template-columns: 100px 1fr;
-		align-items: center;
+.row {
+	display: flex;
+	width: 100%;
+
+	.country,
+	.circle {
+		min-width: 350px;
+		margin-right: 20px;
 	}
 
-	.span {
-		font-size: 18px;
-		margin-right: 10px;
-	}
+	.rocket,
+	.radius {
+		flex: 1 0 auto;
+		grid-template-columns: 60px 1fr;
 
-	.input {
-		height: 25px;
-		padding: 2px 10px;
-		border-radius: 3px;
-		font-size: 12px;
-		width: 100%;
-		border: 1px solid transparent;
-
-		&:invalid {
-			background-color: var(--hover-clear);
-		}
-
-		&.red {
-			border: 1px solid red;
-		}
-
-		&::placeholder {
-			font-size: 12px;
-			color: var(--divider);
-		}
-
-		&:focus {
-			border: 1px solid var(--text-primary);
-			outline: none;
-		}
-	}
-	.row {
-		display: flex;
-		width: 100%;
-
-		.country,
-		.circle {
-			min-width: 350px;
-			margin-right: 20px;
-		}
-
-		.rocket,
-		.radius {
-			flex: 1 0 auto;
-			grid-template-columns: 60px 1fr;
-
-			.input {
-				width: 100%;
-			}
+		.input {
+			width: 100%;
 		}
 	}
 }
@@ -112,6 +97,7 @@
 	column-gap: 30px;
 	margin-top: 10px;
 	margin-bottom: 30px;
+	align-items: center;
 }
 
 .button {
@@ -141,6 +127,14 @@
 	}
 }
 
+.checkbox {
+	display: flex;
+
+	& input {
+		margin-right: 5px;
+	}
+}
+
 .textarea {
 	width: 70%;
 	height: 200px;
@@ -150,4 +144,8 @@
 	border-radius: 5px;
 	border: 1px solid var(--purple);
 	font-size: 12px;
+}
+
+.parseBox {
+	text-align: center;
 }

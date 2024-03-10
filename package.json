@@ -12,7 +12,9 @@
 		"start": "node server.js && (npm run preview)"
 	},
 	"dependencies": {
-		"@turf/turf": "^6.5.0",
+		"@turf/boolean-within": "^6.5.0",
+		"@turf/helpers": "^6.5.0",
+		"@turf/intersect": "^6.5.0",
 		"d3-polygon": "^3.0.1",
 		"express": "^4.18.2",
 		"leaflet.offline": "^3.0.1",

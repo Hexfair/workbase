@@ -13,14 +13,16 @@ import { Coordinate } from '../../@types/Coordinate.type';
 import MapView from './Plugins/MapView';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import * as turf from '@turf/turf';
+import { polygon } from '@turf/helpers';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import turfBooleanWithin from '@turf/boolean-within';
 //===========================================================================================================
 const MAP_CENTER = { lat: 22.0, lng: -80.00 };
 //===========================================================================================================
 
 export default function MapLeaflet() {
 	const { fligthCoords, notamCoords, firCoords, areaCoords, reset } = useStore();
-
 	const [dataIntersect, setDataIntersect] = React.useState<Coordinate[][] | null>(null);
 	const [viewCoords, setViewCoords] = React.useState<Coordinate[]>([[51, -126], [51, -33], [-14, -33], [-14, -126], [51, -126]]);
 
@@ -29,6 +31,7 @@ export default function MapLeaflet() {
 	const getRecenter = () => {
 		if (notamCoords.length > 0) return { lat: notamCoords[0].polygon[0][0][0], lng: notamCoords[0].polygon[0][0][1] };
 		if (fligthCoords.length > 0) return { lat: fligthCoords[0][0], lng: fligthCoords[0][1] };
+		if (areaCoords.area.length > 0) return { lat: areaCoords.area[0][0][0], lng: areaCoords.area[0][0][1] };
 		if (firCoords && firCoords.center.length > 0) return { lat: firCoords.center[0], lng: firCoords.center[1] };
 		return MAP_CENTER;
 	};
@@ -51,9 +54,9 @@ export default function MapLeaflet() {
 							return true;
 						}
 
-						const poly1 = turf.polygon(item.polygon);
-						const poly2 = turf.polygon([viewCoords]);
-						return turf.booleanWithin(poly1, poly2);
+						const poly1 = polygon(item.polygon);
+						const poly2 = polygon([viewCoords]);
+						return turfBooleanWithin(poly1, poly2);
 					})
 					.map(item => (
 						<Polygon
@@ -125,3 +128,27 @@ export default function MapLeaflet() {
 }
 
 
+[
+	[
+		[
+			-1.317,
+			-116.9
+		],
+		[
+			-0.333,
+			-115.283
+		],
+		[
+			-12,
+			-104.683
+		],
+		[
+			-12,
+			-107.4
+		],
+		[
+			-2.317,
+			-116.9
+		]
+	]
+]
