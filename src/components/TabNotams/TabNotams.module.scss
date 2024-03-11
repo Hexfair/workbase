@@ -7,6 +7,23 @@
 	display: flex;
 	text-align: center;
 	margin-bottom: 8px;
+	justify-content: space-between;
+
+	.select {
+		min-width: 120px;
+		border: 2px solid var(--primary);
+		border-radius: 5px;
+		outline: none;
+		padding: 5px;
+		cursor: pointer;
+	}
+
+	.textFilter {
+		border: 2px solid var(--primary);
+		border-radius: 5px;
+		outline: none;
+		padding: 5px 10px;
+	}
 }
 
 .body {

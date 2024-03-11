@@ -11,6 +11,8 @@ import DeleteIcon from '../../assets/icon/delete.svg?react';
 // import Snipper from '../UI/Snipper/Snipper';
 //=========================================================================================================================
 
+// const aaa = ["США", "Индия", "Пакистан"]
+
 interface IAllDiffAreas {
 	id: number,
 	area: IArea,
@@ -29,6 +31,8 @@ function TabNotams() {
 	const [allDiffAreas, setAllDiffAreas] = React.useState<IAllDiffAreas[]>([]);
 	const [selectedDiffArea, setSelectedDiffArea] = React.useState<IAllDiffAreas>();
 	const [output, setOutput] = React.useState<IArea[]>([]);
+	const [selectedCountry, setSelectedCountry] = React.useState<string>('Все');
+	const [textFilter, setTextFilter] = React.useState<string>('');
 
 	const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
@@ -141,6 +145,11 @@ function TabNotams() {
 		}
 	};
 
+	const getOptions = () => {
+		let countrySet = new Set(output.map(item => item.country));
+		return Array.from(countrySet)
+	}
+
 	React.useEffect(() => {
 		const getOutput = async () => {
 			const response = await fetch('http://localhost:5050/json');
@@ -158,6 +167,18 @@ function TabNotams() {
 				<span className={`${styles.name} ${styles.th}`}>NAME</span>
 				<span className={`${styles.country} ${styles.th}`}>COUNTRY</span> */}
 				<button className={styles.button} onClick={() => setIsOpenModal(true)}>Добавить</button>
+				<select name='select' onChange={(e) => setSelectedCountry(e.target.value)} className={styles.select}>
+					<option value='Все'>Все</option>
+					{!isFilter && getOptions().map(obj => (
+						<option key={obj} value={obj}>{obj}</option>
+					))}
+				</select>
+				<input
+					className={styles.textFilter}
+					value={textFilter}
+					onChange={(e) => setTextFilter(e.target.value)}
+					placeholder='Поиск по тексту...'
+				/>
 			</div>
 			<div className={styles.body}>
 				{isFilter && allDiffAreas.length > 0 && allDiffAreas
@@ -178,18 +199,27 @@ function TabNotams() {
 						</div>
 					)}
 
-				{!isFilter && output.map(obj => (
-					<div
-						key={obj.id}
-						className={`${styles.item} ${selectedArea?.id === obj.id && styles.select}`}
-						onClick={() => onClickArea(obj.id)}>
-						<span className={styles.diff}></span>
-						<span className={`${styles.name} ${styles.td}`}>{obj.name}</span>
-						<span className={styles.delete}>
-							<DeleteIcon onClick={() => onDeletePoint(obj.id, obj.name)} />
-						</span>
-					</div>
-				))}
+				{!isFilter && output
+					.filter(obj => {
+						if (selectedCountry === 'Все') return obj;
+						return obj.country === selectedCountry;
+					})
+					.filter(obj =>
+						obj.name.toLowerCase().includes(textFilter.toLowerCase())
+						|| obj.rocket.toLowerCase().includes(textFilter.toLowerCase())
+						|| obj.country.toLowerCase().includes(textFilter.toLowerCase()))
+					.map(obj => (
+						<div
+							key={obj.id}
+							className={`${styles.item} ${selectedArea?.id === obj.id && styles.select}`}
+							onClick={() => onClickArea(obj.id)}>
+							<span className={styles.diff}></span>
+							<span className={`${styles.name} ${styles.td}`}>{obj.name}</span>
+							<span className={styles.delete}>
+								<DeleteIcon onClick={() => onDeletePoint(obj.id, obj.name)} />
+							</span>
+						</div>
+					))}
 			</div>
 			<textarea className={styles.textarea} ref={textareaRef}></textarea>
 			<div className={styles.buttons}>
