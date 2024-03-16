@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './TabFir.module.scss';
-import { dataFIR } from '../../assets/AllFirCoord';
 import { IFir } from '../../@types/IFir.interface';
 import { useStore } from '../../store/store';
 //=========================================================================================================================
@@ -9,15 +8,25 @@ function TabFir() {
 	const { setFirCoords } = useStore();
 
 	const [selectedFir, setSelectedFir] = React.useState<Omit<IFir, 'area'>>();
+	const [output, setOutput] = React.useState<IFir[]>([]);
 
 	const onClickFir = (icao: string) => {
-		const findItem: IFir | undefined = dataFIR.find(obj => obj.icao === icao);
+		const findItem: IFir | undefined = output.find(obj => obj.icao === icao);
 		if (findItem) {
 			setFirCoords(findItem);
 			const { area, ...selectedData } = findItem;
 			setSelectedFir(selectedData);
 		}
 	};
+
+	React.useEffect(() => {
+		const getOutput = async () => {
+			const response = await fetch(`${import.meta.env.VITE_BASE_URL}/fir`);
+			const data = await response.json();
+			setOutput(data)
+		}
+		getOutput();
+	}, [])
 
 	return (
 		<div className={styles.box}>
@@ -27,7 +36,7 @@ function TabFir() {
 				<span className={`${styles.country} ${styles.th}`}>COUNTRY</span>
 			</div>
 			<div className={styles.body}  >
-				{dataFIR
+				{output
 					.sort((a, b) => {
 						if (a.icao < b.icao) return -1;
 						if (a.icao > b.icao) return 1;

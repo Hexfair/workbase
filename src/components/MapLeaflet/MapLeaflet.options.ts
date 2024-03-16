@@ -13,6 +13,18 @@ export const squareIcon = L.icon({
 	popupAnchor: [0, -2]
 });
 
+export const airpotIcon = L.icon({
+	iconUrl: '/map-icon/airport.png',
+	iconAnchor: [10, 10],
+	popupAnchor: [0, -2]
+});
+
+export const heliportIcon = L.icon({
+	iconUrl: '/map-icon/heliport.png',
+	iconAnchor: [10, 10],
+	popupAnchor: [0, -2]
+});
+
 export const purpleOptions = { color: 'purple', weight: 2 };
 export const blueOptions = { color: '#8e04ff' };
 export const areaOptions = { color: '#0057a3', fillColor: '#0057a3', weight: 2 };

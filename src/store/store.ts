@@ -24,10 +24,10 @@ export const useStore = create<StateStore & ActionsStore>()((set, get) => ({
 	},
 	setFligthCoords: (payload) => {
 		const prevFlightCoords = get().fligthCoords;
-		set({ fligthCoords: [...prevFlightCoords, ...payload] });
+		set({ fligthCoords: [...prevFlightCoords, payload] });
 	},
 	deleteFligthCoord: (payload) => {
-		set({ fligthCoords: get().fligthCoords.filter(obj => obj[0] !== payload.lat && obj[1] !== payload.lng) });
+		set({ fligthCoords: get().fligthCoords.filter(obj => obj.idx !== payload) });
 	},
 	setFirCoords: (payload) => {
 		set({ firCoords: payload });

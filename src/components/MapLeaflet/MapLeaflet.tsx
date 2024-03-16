@@ -30,7 +30,7 @@ export default function MapLeaflet() {
 
 	const getRecenter = () => {
 		if (notamCoords.length > 0) return { lat: notamCoords[0].polygon[0][0][0], lng: notamCoords[0].polygon[0][0][1] };
-		if (fligthCoords.length > 0) return { lat: fligthCoords[0][0], lng: fligthCoords[0][1] };
+		if (fligthCoords.length > 0) return { lat: fligthCoords[0].coords[0], lng: fligthCoords[0].coords[1] };
 		if (areaCoords.area.length > 0) return { lat: areaCoords.area[0][0][0], lng: areaCoords.area[0][0][1] };
 		if (firCoords && firCoords.center.length > 0) return { lat: firCoords.center[0], lng: firCoords.center[1] };
 		return MAP_CENTER;
@@ -69,10 +69,13 @@ export default function MapLeaflet() {
 								<Marker key={index} position={obj} icon={circleIcon} />)}
 						</Polygon>))}
 
-				<Polyline pathOptions={blueOptions} positions={fligthCoords} />
+				<Polyline pathOptions={blueOptions} positions={fligthCoords.map(obj => [obj.coords[0], obj.coords[1]])} />
 				{fligthCoords.length > 0 && fligthCoords.map((obj, index) =>
-					<Marker key={index} position={obj} icon={index === 0 || index === fligthCoords.length - 1 ? circleIcon : squareIcon}>
-						<Popup children={`Координаты: ${obj[0]}, ${obj[1]}`} />
+					<Marker
+						key={index}
+						position={[obj.coords[0], obj.coords[1]]}
+						icon={index === 0 || index === fligthCoords.length - 1 ? circleIcon : squareIcon}>
+						<Popup children={`Координаты: ${obj.coords[0]}, ${obj.coords[1]}`} />
 					</Marker>)}
 
 				{areaCoords.area.length > 0 &&
@@ -126,29 +129,3 @@ export default function MapLeaflet() {
 		</div >
 	);
 }
-
-
-[
-	[
-		[
-			-1.317,
-			-116.9
-		],
-		[
-			-0.333,
-			-115.283
-		],
-		[
-			-12,
-			-104.683
-		],
-		[
-			-12,
-			-107.4
-		],
-		[
-			-2.317,
-			-116.9
-		]
-	]
-]

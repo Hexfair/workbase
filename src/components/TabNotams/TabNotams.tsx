@@ -127,7 +127,7 @@ function TabNotams() {
 
 	const onDeletePoint = async (id: number, name: string) => {
 		if (confirm(`Вы точно хотите удалить запись "${name}"?`)) {
-			const response = await fetch('http://localhost:5050', {
+			const response = await fetch(import.meta.env.VITE_BASE_URL, {
 				method: 'DELETE',
 				headers: {
 					'Accept': 'application/json',
@@ -152,7 +152,7 @@ function TabNotams() {
 
 	React.useEffect(() => {
 		const getOutput = async () => {
-			const response = await fetch('http://localhost:5050/json');
+			const response = await fetch(`${import.meta.env.VITE_BASE_URL}/json`);
 			const data = await response.json();
 			const result = calcOutputCoords(data);
 			setOutput(result)
@@ -163,22 +163,25 @@ function TabNotams() {
 	return (
 		<div className={styles.box}>
 			<div className={styles.head}>
-				{/* <span className={`${styles.icao} ${styles.th}`}>ICAO</span>
-				<span className={`${styles.name} ${styles.th}`}>NAME</span>
-				<span className={`${styles.country} ${styles.th}`}>COUNTRY</span> */}
-				<button className={styles.button} onClick={() => setIsOpenModal(true)}>Добавить</button>
-				<select name='select' onChange={(e) => setSelectedCountry(e.target.value)} className={styles.select}>
-					<option value='Все'>Все</option>
-					{!isFilter && getOptions().map(obj => (
-						<option key={obj} value={obj}>{obj}</option>
-					))}
-				</select>
-				<input
-					className={styles.textFilter}
-					value={textFilter}
-					onChange={(e) => setTextFilter(e.target.value)}
-					placeholder='Поиск по тексту...'
-				/>
+				<button className={styles.button} onClick={() => setIsOpenModal(true)}>Добавить +</button>
+				<div>
+					<span className={styles.description}>Фильтр по стране</span>
+					<select name='select' onChange={(e) => setSelectedCountry(e.target.value)} className={styles.select}>
+						<option value='Все'>Все</option>
+						{!isFilter && getOptions().map(obj => (
+							<option key={obj} value={obj}>{obj}</option>
+						))}
+					</select>
+				</div>
+				<div>
+					<span className={styles.description}>Поиск по тексту</span>
+					<input
+						className={styles.textFilter}
+						value={textFilter}
+						onChange={(e) => setTextFilter(e.target.value)}
+						placeholder='Поиск по тексту...'
+					/>
+				</div>
 			</div>
 			<div className={styles.body}>
 				{isFilter && allDiffAreas.length > 0 && allDiffAreas
@@ -236,7 +239,6 @@ function TabNotams() {
 						onChange={(e) => setCountFilter(Number(e.target.value))} />
 				</div>
 			</div>
-			{selectedDiffArea && <div className={styles.notam}>{selectedDiffArea.notam.text}</div>}
 		</div >
 	);
 }

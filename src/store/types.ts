@@ -1,6 +1,7 @@
 import { Coordinate } from '../@types/Coordinate.type';
 import { IArea } from '../@types/IArea.interface';
 import { IFir } from '../@types/IFir.interface';
+import { ISelectedPoint } from '../@types/ISelectedPoint.interface';
 import { TabsType } from '../@types/Tabs.type';
 
 type notamCoordsType = {
@@ -11,7 +12,7 @@ type notamCoordsType = {
 export type StateStore = {
 	activeTab: TabsType;
 	notamCoords: notamCoordsType[];
-	fligthCoords: Coordinate[];
+	fligthCoords: ISelectedPoint[];
 	firCoords: IFir | null;
 	areaCoords: IArea;
 	isOpenModal: boolean;
@@ -20,8 +21,8 @@ export type StateStore = {
 export type ActionsStore = {
 	setNotamCoords: (payload: notamCoordsType) => void;
 	resetNotamCoords: () => void;
-	setFligthCoords: (payload: Coordinate[]) => void;
-	deleteFligthCoord: (payload: { lat: number, lng: number }) => void;
+	setFligthCoords: (payload: ISelectedPoint) => void;
+	deleteFligthCoord: (payload: number) => void;
 	setFirCoords: (payload: IFir | null) => void;
 	setAreaCoords: (payload: IArea) => void;
 	setActiveTab: (payload: TabsType) => void;

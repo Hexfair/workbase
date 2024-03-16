@@ -8,6 +8,12 @@
 	text-align: center;
 	margin-bottom: 8px;
 	justify-content: space-between;
+	align-items: center;
+
+	.button {
+		align-self: flex-end;
+		min-width: 120px;
+	}
 
 	.select {
 		min-width: 120px;
@@ -24,11 +30,15 @@
 		outline: none;
 		padding: 5px 10px;
 	}
+
+	.description {
+		font-size: 13px;
+	}
 }
 
 .body {
 	font-size: 18px;
-	height: 30vh;
+	height: 45vh;
 	overflow-y: auto;
 }
 

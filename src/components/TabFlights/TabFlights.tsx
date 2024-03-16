@@ -1,14 +1,11 @@
 import React from 'react';
 import styles from './TabFlights.module.scss';
-import { dataCoord } from '../../assets/AllDecCoord';
 import DeleteIcon from '../../assets/icon/delete.svg?react';
 import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
 import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
 import { ISelectedPoint } from '../../@types/ISelectedPoint.interface';
 import { useStore } from '../../store/store';
 //=========================================================================================================================
-
-const AllDecCoord = new Map(Object.entries(dataCoord));
 
 function TabFlights() {
 	const { setFligthCoords, deleteFligthCoord } = useStore();
@@ -17,25 +14,37 @@ function TabFlights() {
 	const [textareaText, setTextareaText] = React.useState<string>('');
 
 	const onDeletePoint = (obj: ISelectedPoint) => {
-		if (!obj.coords) return;
-		setPointsSelected((prev) => prev.filter((item) => item.point !== obj.point));
-		deleteFligthCoord({ lat: obj.coords[0], lng: obj.coords[1] });
+		if (!obj.coords[0] || !obj.coords[1]) return;
+		setPointsSelected((prev) => prev.filter((item) => item.idx !== obj.idx));
+		deleteFligthCoord(obj.idx);
 	};
 
 	const onSelectText = async (event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const selectedText = event.target.value.substring(event.target.selectionStart!, event.target.selectionEnd!).trim();
 
-		if (selectedText.length >= 4 && selectedText.length <= 6) {
-			const coordinates = AllDecCoord.get(selectedText);
+		if (selectedText.length >= 3 && selectedText.length <= 6) {
+			const response = await fetch(`${import.meta.env.VITE_BASE_URL}/icao`,
+				{
+					method: 'POST',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json',
+						"Access-Control-Allow-Origin": "*",
+					},
+					body: JSON.stringify({ icao: selectedText }),
+				});
 
-			if (coordinates) {
-				setFligthCoords([[coordinates[0], coordinates[1]]]);
+			const data = await response.json();
 
+			if (data.point) {
 				const pointData: ISelectedPoint = {
-					point: selectedText,
-					coords: [coordinates[0], coordinates[1]]
+					ident: data.point.ident,
+					name: data.point.name,
+					coords: data.point.coords,
+					idx: pointsSelected.length + 1
 				};
 				setPointsSelected((prev) => [...prev, pointData]);
+				setFligthCoords(pointData);
 			}
 		}
 
@@ -47,18 +56,20 @@ function TabFlights() {
 				const coordinates = calcResultCoordinates(tepmlatedCoord);
 
 				if (coordinates) {
-					setFligthCoords([[coordinates[0], coordinates[1]]]);
 
 					const pointData: ISelectedPoint = {
-						point: '[coord]',
-						coords: [coordinates[0], coordinates[1]]
+						ident: null,
+						name: '[coord]',
+						coords: [coordinates[0], coordinates[1]],
+						idx: pointsSelected.length + 1
+
 					};
 					setPointsSelected((prev) => [...prev, pointData]);
+					setFligthCoords(pointData);
 				}
 			}
 		}
 	};
-
 
 	return (
 		<>
@@ -79,15 +90,16 @@ function TabFlights() {
 				onSelect={onSelectText}
 			></textarea>
 			<div className={styles.textPoint}>Выбранные точки:</div>
-			{pointsSelected.map((obj, index) => (
-				<div key={obj.point + index} className={styles.pointsItem}>
-					<span>{obj.point}</span>
+			{pointsSelected.map(obj => (
+				<div key={obj.idx} className={styles.pointsItem}>
+					<span>{obj.name}<span> {obj.ident ? `(${obj.ident})` : ''}</span></span>
 					<span>{obj.coords[0]}, {obj.coords[1]}</span>
 					<span className={styles.delete}>
 						<DeleteIcon onClick={() => onDeletePoint(obj)} />
 					</span>
-				</div>
-			))}
+				</div >
+			))
+			}
 		</>
 	);
 }

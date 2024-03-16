@@ -67,7 +67,7 @@ export const BlockModal = () => {
 			"area": area
 		};
 
-		const response = await fetch(`http://localhost:5050`,
+		const response = await fetch(import.meta.env.VITE_BASE_URL,
 			{
 				method: 'POST',
 				headers: {
@@ -154,7 +154,7 @@ export const BlockModal = () => {
 
 	React.useEffect(() => {
 		const getOutput = async () => {
-			const response = await fetch('http://localhost:5050/json');
+			const response = await fetch(`${import.meta.env.VITE_BASE_URL}/json`);
 			const data = await response.json();
 			setOutput(data)
 		}
