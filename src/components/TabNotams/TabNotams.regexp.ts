@@ -9,3 +9,7 @@ export const reg2 = /\d{6}.\d{1,2}[N|S](\s)?\d{6,7}.\d{1,2}[W|E]/ig;
 // 26-16.00N 076-03.00W
 // 261600N0760300W
 export const reg3 = /\d{2}-\d{2}.\d{2}[N|S](\s)?\d{2,3}-\d{2}.\d{2}[W|E]/ig;
+
+// 26-16.00N 076-03.00W
+// N0000W00000
+export const reg4 = /[N|S]\d{4,6}(\s)?[W|E]\d{4,7}/ig;

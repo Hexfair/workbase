@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './TabFlights.module.scss';
 import DeleteIcon from '../../assets/icon/delete.svg?react';
-import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
-import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
+import { reg1, reg2, reg3, reg4 } from '../TabNotams/TabNotams.regexp';
+import { calcResultCoordinates, calcTepmlateChinaCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
 import { ISelectedPoint } from '../../@types/ISelectedPoint.interface';
 import { useStore } from '../../store/store';
 //=========================================================================================================================
@@ -50,23 +50,39 @@ function TabFlights() {
 
 		if (selectedText.length > 10) {
 			const match = selectedText.match(reg1) || selectedText.match(reg2) || selectedText.match(reg3);
+			const match2 = selectedText.match(reg4);
 
-			if (match) {
+			if ((match && match.length > 1) || (match2 && match2.length > 1)) return;
+
+			if (match && match.length === 1) {
 				const tepmlatedCoord = calcTepmlateCoordinates(selectedText.replaceAll(/[-|.|\s]/g, ''));
 				const coordinates = calcResultCoordinates(tepmlatedCoord);
 
-				if (coordinates) {
+				const pointData: ISelectedPoint = {
+					ident: null,
+					name: '[coord]',
+					coords: [coordinates[0], coordinates[1]],
+					idx: pointsSelected.length + 1
 
-					const pointData: ISelectedPoint = {
-						ident: null,
-						name: '[coord]',
-						coords: [coordinates[0], coordinates[1]],
-						idx: pointsSelected.length + 1
+				};
+				setPointsSelected((prev) => [...prev, pointData]);
+				setFligthCoords(pointData);
+			}
 
-					};
-					setPointsSelected((prev) => [...prev, pointData]);
-					setFligthCoords(pointData);
-				}
+			if (match2 && match2.length === 1) {
+				const calcChinaCoors = calcTepmlateChinaCoordinates(selectedText.replaceAll(/[-|.|\s]/g, ''));
+				const tepmlatedCoord = calcTepmlateCoordinates(calcChinaCoors);
+				const coordinates = calcResultCoordinates(tepmlatedCoord);
+
+				const pointData: ISelectedPoint = {
+					ident: null,
+					name: '[coord]',
+					coords: [coordinates[0], coordinates[1]],
+					idx: pointsSelected.length + 1
+
+				};
+				setPointsSelected((prev) => [...prev, pointData]);
+				setFligthCoords(pointData);
 			}
 		}
 	};
@@ -77,7 +93,7 @@ function TabFlights() {
 				<summary className={styles.summary}>Как пользоваться?</summary>
 				<div className={styles.text}>
 					<p>1. Вставить в текстовое поле План полета</p>
-					<p>2. Выделить поочереди наименования пролетных точек</p>
+					<p>2. Выделить поочереди пролетные точки</p>
 					<p>3. Если координаты пролетной точки есть в базе, значит она отобразиться на карте</p>
 					<p>4. При необходимости можно удалить ненужные точки</p>
 					<p>5. Поискать координаты тех точек, которых нет в базе, и сообщить ПДВ</p>
@@ -93,7 +109,7 @@ function TabFlights() {
 			{pointsSelected.map(obj => (
 				<div key={obj.idx} className={styles.pointsItem}>
 					<span>{obj.name}<span> {obj.ident ? `(${obj.ident})` : ''}</span></span>
-					<span>{obj.coords[0]}, {obj.coords[1]}</span>
+					<span>{obj.coords[0].toFixed(3)}, {obj.coords[1].toFixed(3)}</span>
 					<span className={styles.delete}>
 						<DeleteIcon onClick={() => onDeletePoint(obj)} />
 					</span>

@@ -3,13 +3,13 @@ import L from 'leaflet';
 
 export const circleIcon = L.icon({
 	iconUrl: '/map-icon/circle.svg',
-	iconAnchor: [3, 3],
+	iconAnchor: [4, 4],
 	popupAnchor: [0, -2]
 });
 
-export const squareIcon = L.icon({
-	iconUrl: '/map-icon/square.svg',
-	iconAnchor: [3, 3],
+export const circleIconBlue = L.icon({
+	iconUrl: '/map-icon/circle-blue.svg',
+	iconAnchor: [4, 4],
 	popupAnchor: [0, -2]
 });
 

@@ -4,7 +4,7 @@ import styles from './MapLeaflet.module.scss';
 import 'leaflet.offline';
 import 'leaflet/dist/leaflet.css';
 import Recenter from './Plugins/MapRecenter';
-import { difOptions, areaOptions, blueOptions, circleIcon, purpleOptions, squareIcon } from './MapLeaflet.options';
+import { difOptions, areaOptions, blueOptions, circleIcon, purpleOptions, circleIconBlue } from './MapLeaflet.options';
 import ClearIcon from '../../assets/icon/clear.svg?react';
 import CursorCoordinates from './Plugins/CursorCoordinates/CursorCoordinates';
 import LeafletRuler from './Plugins/PolylineMeasure/LeafletRuler';
@@ -74,7 +74,8 @@ export default function MapLeaflet() {
 					<Marker
 						key={index}
 						position={[obj.coords[0], obj.coords[1]]}
-						icon={index === 0 || index === fligthCoords.length - 1 ? circleIcon : squareIcon}>
+						icon={(index === 0) || (index === fligthCoords.length - 1) ? circleIcon : circleIconBlue}
+					>
 						<Popup children={`Координаты: ${obj.coords[0]}, ${obj.coords[1]}`} />
 					</Marker>)}
 

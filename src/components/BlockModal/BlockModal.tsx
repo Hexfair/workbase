@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './BlockModal.module.scss';
 import Modal from 'react-modal';
 import { useStore } from '../../store/store';
-import { calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
-import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
+import { calcTepmlateChinaCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
+import { reg1, reg2, reg3, reg4 } from '../TabNotams/TabNotams.regexp';
 import { StateType, initialState } from './BlockModal.state';
 import Input from '../UI/Input/Input';
 import { inputs } from './BlockModal.constants';
@@ -96,7 +96,6 @@ export const BlockModal = () => {
 		setPolygon(prev => ({ ...prev, [event.target.name]: event.target.value }))
 
 		if (!event.target.validity.valid) {
-			console.log(event.target.name);
 			setError(prev => ({ ...prev, [event.target.name]: 'Error', status: true }))
 		} else {
 			setError(prev => ({ ...prev, [event.target.name]: '', status: false }))
@@ -109,13 +108,25 @@ export const BlockModal = () => {
 
 		for (let i = 0; i < arr.length; i++) {
 			const elMatch = arr[i].match(reg1) || arr[i].match(reg2) || arr[i].match(reg3);
+			const elMatch2 = arr[i].match(reg4);
 
-			const coordsString = elMatch?.reduce((acc, item) => {
-				const tepmlatedCoord = calcTepmlateCoordinates(item.replaceAll(/[-|.|\s|//]/g, ''));
-				return acc = acc + tepmlatedCoord + ' ';
-			}, '');
+			if (elMatch) {
+				const coordsString = elMatch?.reduce((acc, item) => {
+					const tepmlatedCoord = calcTepmlateCoordinates(item.replaceAll(/[-|.|\s|//]/g, ''));
+					return acc = acc + tepmlatedCoord + ' ';
+				}, '');
 
-			setPolygon(prev => ({ ...prev, ['polygon' + (i + 1)]: coordsString?.trim() }))
+				setPolygon(prev => ({ ...prev, ['polygon' + (i + 1)]: coordsString?.trim() }))
+			}
+			if (elMatch2) {
+				const coordsString = elMatch2?.reduce((acc, item) => {
+					const calcChinaCoors = calcTepmlateChinaCoordinates(item.replaceAll(/[-|.|\s|//]/g, ''));
+					const tepmlatedCoord = calcTepmlateCoordinates(calcChinaCoors);
+					return acc = acc + tepmlatedCoord + ' ';
+				}, '');
+
+				setPolygon(prev => ({ ...prev, ['polygon' + (i + 1)]: coordsString?.trim() }))
+			}
 		}
 	}
 

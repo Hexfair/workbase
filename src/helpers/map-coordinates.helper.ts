@@ -38,6 +38,19 @@ export const calcTepmlateCoordinates = (item: string) => {
 	}
 };
 
+export const calcTepmlateChinaCoordinates = (item: string) => {
+	// N0000W0000
+	const side1 = item[0];
+	let newItem = '';
+	if (item.includes('W')) {
+		newItem = item.slice(1).replace('W', side1) + 'W'
+	}
+	if (item.includes('E')) {
+		newItem = item.slice(1).replace('E', side1) + 'E'
+	}
+	return newItem
+};
+
 // 000000N0000000W
 export const calcResultCoordinates = (item: string): Coordinate => {
 	const degLat = Number(item.slice(0, 2));

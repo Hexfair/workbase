@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import styles from './MapTabsSide.module.scss';
 import TabNotams from '../TabNotams/TabNotams';
 import TabFlights from '../TabFlights/TabFlights';
-import { TabsType } from '../../@types/Tabs.type';
 import { useStore } from '../../store/store';
 import Spinner from '../UI/Spinner/Spinner';
 const TabFir = React.lazy(() => import('../TabFir/TabFir'));
@@ -11,26 +10,22 @@ const TabFir = React.lazy(() => import('../TabFir/TabFir'));
 export default function MapTabsSide() {
 	const { activeTab, setActiveTab } = useStore();
 
-	const onChangeActiveTab = (newTab: TabsType) => {
-		setActiveTab(newTab);
-	};
-
 	return (
 		<div className={styles.MapTabsSide}>
 			<div className={styles.tabs}>
 				<button
 					className={`${styles.tab} ${activeTab === 'notams' && styles.active}`}
-					onClick={() => onChangeActiveTab('notams')}
+					onClick={() => setActiveTab('notams')}
 				>NOTAMs
 				</button>
 				<button
 					className={`${styles.tab} ${activeTab === 'flights' && styles.active}`}
-					onClick={() => onChangeActiveTab('flights')}
+					onClick={() => setActiveTab('flights')}
 				>Flight plans
 				</button>
 				<button
 					className={`${styles.tab} ${activeTab === 'fir' && styles.active}`}
-					onClick={() => onChangeActiveTab('fir')}
+					onClick={() => setActiveTab('fir')}
 				>FIR
 				</button>
 			</div>
