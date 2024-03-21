@@ -73,7 +73,9 @@ function TabFlights() {
 				const calcChinaCoors = calcTepmlateChinaCoordinates(selectedText.replaceAll(/[-|.|\s]/g, ''));
 				const tepmlatedCoord = calcTepmlateCoordinates(calcChinaCoors);
 				const coordinates = calcResultCoordinates(tepmlatedCoord);
-
+				console.log('calcChinaCoors', calcChinaCoors);
+				console.log('tepmlatedCoord', tepmlatedCoord);
+				console.log('coordinates', coordinates);
 				const pointData: ISelectedPoint = {
 					ident: null,
 					name: '[coord]',

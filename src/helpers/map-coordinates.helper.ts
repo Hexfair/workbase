@@ -12,7 +12,6 @@ export const transformCoordinates = (d: number, m: number, s: number, side: Side
 	return 0;
 };
 
-
 export const calcTepmlateCoordinates = (item: string) => {
 	switch (item.length) {
 		case 10: // 0000N0000W
@@ -47,6 +46,10 @@ export const calcTepmlateChinaCoordinates = (item: string) => {
 	}
 	if (item.includes('E')) {
 		newItem = item.slice(1).replace('E', side1) + 'E'
+	}
+	// 09000N059000W
+	if (newItem.length === 13) {
+		return newItem.slice(0, 5) + '0' + newItem[5] + newItem.slice(6, 12) + '0' + newItem[12];
 	}
 	return newItem
 };
