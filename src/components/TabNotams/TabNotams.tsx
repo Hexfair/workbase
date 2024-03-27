@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './TabNotams.module.scss';
 import { IArea } from '../../@types/IArea.interface';
 import { Coordinate } from '../../@types/Coordinate.type';
-import { reg1, reg2, reg3 } from '../TabNotams/TabNotams.regexp';
-import { calcResultCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
+import { reg1, reg2, reg3, reg4 } from '../TabNotams/TabNotams.regexp';
+import { calcResultCoordinates, calcTepmlateChinaCoordinates, calcTepmlateCoordinates } from '../../helpers/map-coordinates.helper';
 import { useStore } from '../../store/store';
 import { calcDiffProcent } from '../../helpers/calc-diff-procent.helper';
 import { calcOutputCoords } from '../../helpers/calc-output-coords.helper';
@@ -56,20 +56,30 @@ function TabNotams() {
 			const coordItem: Coordinate[] = [];
 
 			const elMatch = el.match(reg1) || el.match(reg2) || el.match(reg3);
-			if (!elMatch || elMatch.length < 4) continue;
+			const elMatch2 = el.match(reg4);
 
-			if (elMatch[0] !== elMatch[elMatch.length - 1]) {
-				elMatch.push(elMatch[0]);
+			if (elMatch && elMatch.length > 3) {
+				if (elMatch[0] !== elMatch[elMatch.length - 1]) {
+					elMatch.push(elMatch[0]);
+				}
+				elMatch.forEach((item) => {
+					const tepmlatedCoord = calcTepmlateCoordinates(item.replaceAll(/[-|.|\s|//]/g, ''));
+					const coordinates = calcResultCoordinates(tepmlatedCoord);
+					coordItem.push(coordinates);
+				});
 			}
 
-			elMatch.forEach((item) => {
-				const tepmlatedCoord = calcTepmlateCoordinates(item.replaceAll(/[-|.|\s|//]/g, ''));
-				const coordinates = calcResultCoordinates(tepmlatedCoord);
-				coordItem.push(coordinates);
-			});
-			if (coordItem[0][0] !== coordItem[coordItem.length - 1][0]
-				&& coordItem[0][1] !== coordItem[coordItem.length - 1][1]
-			) coordItem.push(coordItem[0])
+			if (elMatch2 && elMatch2.length > 3) {
+				if (elMatch2[0] !== elMatch2[elMatch2.length - 1]) {
+					elMatch2.push(elMatch2[0]);
+				}
+				elMatch2.forEach((item) => {
+					const calcChinaCoors = calcTepmlateChinaCoordinates(item.replaceAll(/[-|.|\s|//]/g, ''));
+					const tepmlatedCoord = calcTepmlateCoordinates(calcChinaCoors);
+					const coordinates = calcResultCoordinates(tepmlatedCoord);
+					coordItem.push(coordinates);
+				});
+			}
 
 			if (!filter) {
 				if (coordItem.length > 3) {
@@ -137,7 +147,7 @@ function TabNotams() {
 			});
 
 			if (response.status === 200) {
-				alert('Данные успешно добавлены!');
+				alert('Данные успешно удалены!');
 				window.location.reload();
 			} else {
 				alert('Ошибка при добавлении данных');
