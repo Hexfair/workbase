@@ -8,10 +8,7 @@ import { useStore } from '../../store/store';
 import { calcDiffProcent } from '../../helpers/calc-diff-procent.helper';
 import { calcOutputCoords } from '../../helpers/calc-output-coords.helper';
 import DeleteIcon from '../../assets/icon/delete.svg?react';
-// import Snipper from '../UI/Snipper/Snipper';
 //=========================================================================================================================
-
-// const aaa = ["США", "Индия", "Пакистан"]
 
 interface IAllDiffAreas {
 	id: number,

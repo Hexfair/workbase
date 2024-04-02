@@ -40,6 +40,15 @@ export const BlockModal = () => {
 		setError(initialState);
 	}
 
+	const checkPositionEquivalent = (item: string) => {
+		const arr = item.split(' ');
+		if (arr[0] !== arr[arr.length - 1]) {
+			return item + ' ' + arr[0];
+		}
+		else {
+			return item;
+		}
+	}
 	const onSubmitForm = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
@@ -47,16 +56,16 @@ export const BlockModal = () => {
 			return alert('Неверный формат РАДИУСА');
 		}
 
-		if (name.length < 4) {
+		if (name.length < 3) {
 			return alert('Введите название (не менее 3 символов)');
 		}
 
 		const area = [
-			polygon.polygon1.toUpperCase(),
-			polygon.polygon2.toUpperCase(),
-			polygon.polygon3.toUpperCase(),
-			polygon.polygon4.toUpperCase(),
-			polygon.polygon5.toUpperCase(),
+			checkPositionEquivalent(polygon.polygon1.toUpperCase()),
+			checkPositionEquivalent(polygon.polygon2.toUpperCase()),
+			checkPositionEquivalent(polygon.polygon3.toUpperCase()),
+			checkPositionEquivalent(polygon.polygon4.toUpperCase()),
+			checkPositionEquivalent(polygon.polygon5.toUpperCase()),
 			polygon.circle.toUpperCase() + radius,
 		].filter(obj => obj.length > 0);
 
