@@ -1,0 +1,1694 @@
+[
+    {
+        "datatype": "armyBase",
+        "ident": "1",
+        "name": "Fort Novosel",
+        "coords": [
+            31.344749,
+            -85.70883
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "2",
+        "name": "Redstone Arsenal",
+        "coords": [
+            34.685346,
+            -86.650071
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "3",
+        "name": "Fort Richardson",
+        "coords": [
+            61.254448,
+            -149.688334
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "4",
+        "name": "Fort Wainwright",
+        "coords": [
+            64.827826,
+            -147.642045
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "5",
+        "name": "Joint Base Elmendorf-Richardson",
+        "coords": [
+            61.202829,
+            -149.900208
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "6",
+        "name": "Fort Huachuca",
+        "coords": [
+            31.592354,
+            -110.330114
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "7",
+        "name": "Yuma Proving Ground",
+        "coords": [
+            33.017156,
+            -114.254
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "8",
+        "name": "Fort Irwin",
+        "coords": [
+            35.26583,
+            -116.683361
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "9",
+        "name": "Colorado Springs Military Bases",
+        "coords": [
+            38.821588,
+            -104.821072
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "10",
+        "name": "Fort Carson",
+        "coords": [
+            38.737348,
+            -104.787812
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "11",
+        "name": "Fort Eisenhower",
+        "coords": [
+            33.351896,
+            -82.227345
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "12",
+        "name": "Fort Moore",
+        "coords": [
+            32.363905,
+            -84.835954
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "13",
+        "name": "Fort Stewart",
+        "coords": [
+            31.879598,
+            -81.600909
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "14",
+        "name": "Hunter Army Airfield",
+        "coords": [
+            32.010223,
+            -81.151114
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "15",
+        "name": "Oahu Hawaii Military Bases",
+        "coords": [
+            21.444591,
+            -157.755636
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "16",
+        "name": "Schofield Barracks/Fort Shafter",
+        "coords": [
+            21.497647,
+            -158.063049
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "17",
+        "name": "Fort Leavenworth",
+        "coords": [
+            39.353846,
+            -94.920974
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "18",
+        "name": "Fort Riley",
+        "coords": [
+            39.144911,
+            -96.770814
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "19",
+        "name": "Fort Campbell",
+        "coords": [
+            36.649656,
+            -87.466128
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "20",
+        "name": "Fort Knox",
+        "coords": [
+            37.889757,
+            -85.961065
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "21",
+        "name": "Fort Johnson",
+        "coords": [
+            31.106743,
+            -93.154106
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "22",
+        "name": "Aberdeen Proving Ground",
+        "coords": [
+            39.472444,
+            -76.129932
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "23",
+        "name": "Fort Detrick",
+        "coords": [
+            39.435638,
+            -77.427435
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "24",
+        "name": "Fort George G. Meade",
+        "coords": [
+            39.108885,
+            -76.743279
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "25",
+        "name": "Fort Devens",
+        "coords": [
+            42.541287,
+            -71.610603
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "26",
+        "name": "Fort Leonard Wood",
+        "coords": [
+            37.741942,
+            -92.127914
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "27",
+        "name": "Joint Base McGuire-Dix-Lakehurst",
+        "coords": [
+            40.040561,
+            -74.577684
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "28",
+        "name": "Fort Drum",
+        "coords": [
+            44.040219,
+            -75.744209
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "29",
+        "name": "Fort Hamilton",
+        "coords": [
+            40.607469,
+            -74.025707
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "30",
+        "name": "Military Academy, West Point",
+        "coords": [
+            41.391491,
+            -73.955841
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "31",
+        "name": "Fayetteville Military Bases",
+        "coords": [
+            35.052659,
+            -78.87836
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "32",
+        "name": "Fort Liberty",
+        "coords": [
+            35.139564,
+            -79.00672
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "33",
+        "name": "Fort Sill",
+        "coords": [
+            34.702495,
+            -98.508654
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "34",
+        "name": "Carlisle Barracks",
+        "coords": [
+            40.206738,
+            -77.17329
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "35",
+        "name": "Fort Buchanan",
+        "coords": [
+            18.415421,
+            -66.120766
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "36",
+        "name": "Fort Jackson",
+        "coords": [
+            34.021666,
+            -80.935689
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "37",
+        "name": "Camp Bullis",
+        "coords": [
+            29.636665,
+            -98.591137
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "38",
+        "name": "Fort Bliss",
+        "coords": [
+            31.807014,
+            -106.420312
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "39",
+        "name": "Fort Cavazos",
+        "coords": [
+            31.13,
+            -97.78
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "40",
+        "name": "Fort Sam Houston",
+        "coords": [
+            29.470464,
+            -98.423874
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "41",
+        "name": "Joint Base San Antonio",
+        "coords": [
+            29.423451,
+            -98.45089
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "42",
+        "name": "Dugway Proving Ground",
+        "coords": [
+            40.180841,
+            -112.912674
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "43",
+        "name": "Fort Belvoir",
+        "coords": [
+            38.692444,
+            -77.134581
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "44",
+        "name": "Fort Eustis",
+        "coords": [
+            37.159329,
+            -76.57519
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "45",
+        "name": "Fort Gregg-Adams",
+        "coords": [
+            37.228347,
+            -77.326241
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "46",
+        "name": "Fort Myer",
+        "coords": [
+            38.877704,
+            -77.077546
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "47",
+        "name": "Fort Story",
+        "coords": [
+            37.15933,
+            -76.575188
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "48",
+        "name": "Hampton Roads Military Bases",
+        "coords": [
+            36.850505,
+            -76.285629
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "49",
+        "name": "Fort Lewis",
+        "coords": [
+            47.115759,
+            -122.564592
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "50",
+        "name": "Fort McCoy",
+        "coords": [
+            44.010565,
+            -90.681581
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "51",
+        "name": "US Army Garrison Benelux",
+        "coords": [
+            50.575833,
+            3.831
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "52",
+        "name": "US Army Garrison Ansbach",
+        "coords": [
+            49.299143,
+            10.570068
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "53",
+        "name": "US Army Garrison Baumholder",
+        "coords": [
+            49.614815,
+            7.331117
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "54",
+        "name": "US Army Garrison Bavaria",
+        "coords": [
+            49.714869,
+            11.913664
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "55",
+        "name": "US Army Garrison Hohenfels",
+        "coords": [
+            49.203311,
+            11.847068
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "56",
+        "name": "US Army Garrison Rheinland-Pfalz",
+        "coords": [
+            49.4044,
+            7.55962
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "57",
+        "name": "US Army Garrison Stuttgart",
+        "coords": [
+            48.684869,
+            9.048655
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "58",
+        "name": "US Army Garrison Wiesbaden",
+        "coords": [
+            50.040887,
+            8.327057
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "59",
+        "name": "Camp Darby",
+        "coords": [
+            43.644206,
+            10.352439
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "60",
+        "name": "US Army Garrison Italy",
+        "coords": [
+            45.544911,
+            11.540956
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "61",
+        "name": "Camp Zama",
+        "coords": [
+            35.512281,
+            139.395099
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "62",
+        "name": "Torii Station",
+        "coords": [
+            26.383439,
+            127.739737
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "63",
+        "name": "US Army Garrison Daegu",
+        "coords": [
+            35.850552,
+            128.598999
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "64",
+        "name": "US Army Garrison Humphreys",
+        "coords": [
+            36.959366,
+            127.044341
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "65",
+        "name": "US Army Garrison Red Cloud/Casey",
+        "coords": [
+            37.920342,
+            127.082596
+        ]
+    },
+    {
+        "datatype": "armyBase",
+        "ident": "66",
+        "name": "US Army Garrison Yongsan",
+        "coords": [
+            37.529622,
+            126.964753
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "67",
+        "name": "Maxwell-Gunter",
+        "coords": [
+            32.382444,
+            -86.358697
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "68",
+        "name": "Eielson",
+        "coords": [
+            64.678703,
+            -147.096462
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "69",
+        "name": "Elmendorf",
+        "coords": [
+            61.25354,
+            -149.793777
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "70",
+        "name": "Davis-Monthan Air Force Base",
+        "coords": [
+            32.155284,
+            -110.860601
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "71",
+        "name": "Luke Air Force Base",
+        "coords": [
+            33.540822,
+            -112.366447
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "72",
+        "name": "Little Rock",
+        "coords": [
+            34.899377,
+            -92.154865
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "73",
+        "name": "Beale Air Force Base",
+        "coords": [
+            39.1486,
+            -121.430619
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "74",
+        "name": "Edwards Air Force Base",
+        "coords": [
+            34.908106,
+            -117.925816
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "75",
+        "name": "Los Angeles Air Force Base",
+        "coords": [
+            33.919022,
+            -118.38114
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "76",
+        "name": "March Air Reserve Base",
+        "coords": [
+            33.891721,
+            -117.245793
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "77",
+        "name": "Travis Air Force Base",
+        "coords": [
+            38.263052,
+            -121.942577
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "78",
+        "name": "Vandenberg Air Force Base",
+        "coords": [
+            34.749582,
+            -120.519762
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "79",
+        "name": "Buckley Air Force Base",
+        "coords": [
+            39.716827,
+            -104.774852
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "80",
+        "name": "Colorado Springs Military Bases",
+        "coords": [
+            38.821588,
+            -104.821072
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "81",
+        "name": "Peterson Air Force Base",
+        "coords": [
+            38.826419,
+            -104.703054
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "82",
+        "name": "Schriever Air Force Base",
+        "coords": [
+            38.802995,
+            -104.522939
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "83",
+        "name": "Dover Air Force Base",
+        "coords": [
+            39.132416,
+            -75.484989
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "84",
+        "name": "Joint Base Anacostia-Bolling",
+        "coords": [
+            38.847529,
+            -77.009954
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "85",
+        "name": "Eglin Air Force Base",
+        "coords": [
+            30.459476,
+            -86.54995
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "86",
+        "name": "Hurlburt Field",
+        "coords": [
+            30.424623,
+            -86.695089
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "87",
+        "name": "MacDill Air Force Base",
+        "coords": [
+            27.845489,
+            -82.493935
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "88",
+        "name": "Patrick Air Force Base",
+        "coords": [
+            28.234948,
+            -80.603943
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "89",
+        "name": "Tyndall Air Force Base",
+        "coords": [
+            30.072362,
+            -85.597315
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "90",
+        "name": "Moody Air Force Base",
+        "coords": [
+            30.969146,
+            -83.18646
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "91",
+        "name": "Robins Air Force Base",
+        "coords": [
+            32.644651,
+            -83.588619
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "92",
+        "name": "Hickam Air Force Base",
+        "coords": [
+            21.340928,
+            -157.960954
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "93",
+        "name": "Mountain Home Air Force Base",
+        "coords": [
+            43.044743,
+            -115.848384
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "94",
+        "name": "Scott AFB Guide",
+        "coords": [
+            38.542996,
+            -89.838123
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "95",
+        "name": "Grissom Air Reserve Base",
+        "coords": [
+            40.659578,
+            -86.146932
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "96",
+        "name": "McConnell Air Force Base",
+        "coords": [
+            37.620282,
+            -97.275138
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "97",
+        "name": "Barksdale Air Force Base",
+        "coords": [
+            32.505202,
+            -93.65922
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "98",
+        "name": "Andrews Air Force Base",
+        "coords": [
+            38.803363,
+            -76.87181
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "99",
+        "name": "Hanscom Air Force Base",
+        "coords": [
+            42.45736,
+            -71.278417
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "100",
+        "name": "Columbus Air Force Base",
+        "coords": [
+            33.627127,
+            -88.436208
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "101",
+        "name": "Keesler Air Force Base",
+        "coords": [
+            30.410911,
+            -88.911688
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "102",
+        "name": "Whiteman Air Force Base",
+        "coords": [
+            38.729581,
+            -93.553047
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "103",
+        "name": "Malmstrom Air Force Base",
+        "coords": [
+            47.507722,
+            -111.184816
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "104",
+        "name": "Offutt Air Force Base",
+        "coords": [
+            41.115249,
+            -95.911589
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "105",
+        "name": "Creech Air Force Base",
+        "coords": [
+            36.580384,
+            -115.674148
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "106",
+        "name": "Nellis Air Force Base",
+        "coords": [
+            36.25078,
+            -115.063548
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "107",
+        "name": "Joint Base McGuire-Dix-Lakehurst",
+        "coords": [
+            40.040561,
+            -74.577684
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "108",
+        "name": "Cannon Air Force Base",
+        "coords": [
+            34.380952,
+            -103.31646
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "109",
+        "name": "Holloman Air Force Base",
+        "coords": [
+            32.849236,
+            -106.096945
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "110",
+        "name": "Kirtland Air Force Base",
+        "coords": [
+            35.052686,
+            -106.603689
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "111",
+        "name": "Pope Field",
+        "coords": [
+            35.172052,
+            -79.016535
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "112",
+        "name": "Seymour Johnson Air Force Base",
+        "coords": [
+            35.351116,
+            -77.958813
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "113",
+        "name": "Grand Forks Air Force Base",
+        "coords": [
+            47.96464,
+            -97.375946
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "114",
+        "name": "Minot Air Force Base",
+        "coords": [
+            48.421227,
+            -101.330681
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "115",
+        "name": "Wright-Patterson Air Force Base",
+        "coords": [
+            39.815393,
+            -84.049358
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "116",
+        "name": "Altus Air Force Base",
+        "coords": [
+            34.666535,
+            -99.270401
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "117",
+        "name": "Tinker Air Force Base",
+        "coords": [
+            35.42256,
+            -97.382812
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "118",
+        "name": "Vance Air Force Base",
+        "coords": [
+            36.344029,
+            -97.903547
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "119",
+        "name": "Charleston Air Force Base",
+        "coords": [
+            32.903371,
+            -80.042095
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "120",
+        "name": "Shaw Air Force Base",
+        "coords": [
+            33.979311,
+            -80.461121
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "121",
+        "name": "Ellsworth Air Force Base",
+        "coords": [
+            44.149357,
+            -103.081112
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "122",
+        "name": "Dyess Air Force Base",
+        "coords": [
+            32.427608,
+            -99.862935
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "123",
+        "name": "Goodfellow Air Force Base",
+        "coords": [
+            31.436884,
+            -100.403967
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "124",
+        "name": "Joint Base San Antonio",
+        "coords": [
+            29.423451,
+            -98.45089
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "125",
+        "name": "Lackland Air Force Base",
+        "coords": [
+            29.382779,
+            -98.626545
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "126",
+        "name": "Laughlin Air Force Base",
+        "coords": [
+            29.358763,
+            -100.773296
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "127",
+        "name": "Randolph Air Force Base",
+        "coords": [
+            29.529726,
+            -98.278883
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "128",
+        "name": "Red River Army Depot",
+        "coords": [
+            33.463418,
+            -94.336231
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "129",
+        "name": "Sheppard Air Force Base",
+        "coords": [
+            33.987904,
+            -98.491702
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "130",
+        "name": "Hill Air Force Base",
+        "coords": [
+            41.120261,
+            -111.972098
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "131",
+        "name": "Hampton Roads Military Bases",
+        "coords": [
+            36.850505,
+            -76.285629
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "132",
+        "name": "Langley Air Force Base",
+        "coords": [
+            37.079259,
+            -76.361686
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "133",
+        "name": "Fairchild Air Force Base",
+        "coords": [
+            47.628033,
+            -117.651644
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "134",
+        "name": "McChord Field",
+        "coords": [
+            47.137074,
+            -122.476358
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "135",
+        "name": "F. E. Warren Air Force Base",
+        "coords": [
+            41.150482,
+            -104.849567
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "136",
+        "name": "Geilenkirchen NATO Air Base",
+        "coords": [
+            50.962016,
+            6.042221
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "137",
+        "name": "Ramstein Air Base",
+        "coords": [
+            49.440223,
+            7.597086
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "138",
+        "name": "Spangdahlem Air Base",
+        "coords": [
+            49.974683,
+            6.699146
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "139",
+        "name": "Andersen Air Force Base",
+        "coords": [
+            13.587563,
+            144.924406
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "140",
+        "name": "Aviano Air Base",
+        "coords": [
+            46.026172,
+            12.611881
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "141",
+        "name": "Kadena Air Base",
+        "coords": [
+            26.355728,
+            127.767843
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "142",
+        "name": "Misawa Air Base",
+        "coords": [
+            40.704314,
+            141.369601
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "143",
+        "name": "Yokota Air Base",
+        "coords": [
+            35.742457,
+            139.338507
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "144",
+        "name": "Kunsan Air Base",
+        "coords": [
+            35.926226,
+            126.61546
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "145",
+        "name": "Osan Air Base",
+        "coords": [
+            36.988766,
+            127.090003
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "146",
+        "name": "Moron Air Base",
+        "coords": [
+            37.173883,
+            -5.613263
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "147",
+        "name": "Incirlik Air Base",
+        "coords": [
+            36.99119,
+            35.433143
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "148",
+        "name": "Izmir Air Station",
+        "coords": [
+            38.422433,
+            27.144986
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "149",
+        "name": "RAF Croughton, Fairford",
+        "coords": [
+            51.996449,
+            -1.189812
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "150",
+        "name": "RAF Lakenheath",
+        "coords": [
+            52.407973,
+            0.554291
+        ]
+    },
+    {
+        "datatype": "airBase",
+        "ident": "151",
+        "name": "RAF Mildenhall",
+        "coords": [
+            52.36135,
+            0.486761
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "152",
+        "name": "China Lake Naval Air Weapons Station",
+        "coords": [
+            35.69045,
+            -117.686963
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "153",
+        "name": "Naval Air Station Lemoore",
+        "coords": [
+            36.326812,
+            -119.93989
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "154",
+        "name": "Naval Air Station North Island",
+        "coords": [
+            32.7026,
+            -117.193715
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "155",
+        "name": "Naval Base Coronado",
+        "coords": [
+            32.6745431,
+            -117.16185
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "156",
+        "name": "Naval Base Point Loma",
+        "coords": [
+            32.705,
+            -117.238
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "157",
+        "name": "Naval Base San Diego",
+        "coords": [
+            32.679,
+            -117.123
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "158",
+        "name": "Naval Submarine Base New London",
+        "coords": [
+            41.387499,
+            -72.087371
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "159",
+        "name": "Naval Air Station Jacksonville",
+        "coords": [
+            30.228444,
+            -81.674488
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "160",
+        "name": "Naval Air Station Key West",
+        "coords": [
+            24.577412,
+            -81.695881
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "161",
+        "name": "Naval Air Station Pensacola",
+        "coords": [
+            30.348435,
+            -87.315302
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "162",
+        "name": "Naval Station Mayport",
+        "coords": [
+            30.388832,
+            -81.419957
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "163",
+        "name": "Naval Support Activity Panama City",
+        "coords": [
+            30.176704,
+            -85.756745
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "164",
+        "name": "Naval Submarine Base Kings Bay",
+        "coords": [
+            30.794051,
+            -81.548595
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "165",
+        "name": "Naval Station Pearl Harbor",
+        "coords": [
+            21.349712,
+            -157.942768
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "166",
+        "name": "Naval Station Great Lakes",
+        "coords": [
+            42.30999,
+            -87.85007
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "167",
+        "name": "Naval Air Station Patuxent River",
+        "coords": [
+            38.286366,
+            -76.423903
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "168",
+        "name": "Naval Air Station Fallon",
+        "coords": [
+            39.419121,
+            -118.698564
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "169",
+        "name": "Naval Station Newport",
+        "coords": [
+            41.516322,
+            -71.306419
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "170",
+        "name": "Naval Air Station Corpus Christi",
+        "coords": [
+            27.689076,
+            -97.272949
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "171",
+        "name": "Naval Air Station Oceana",
+        "coords": [
+            36.820313,
+            -76.027483
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "172",
+        "name": "Naval Amphibious Base Little Creek",
+        "coords": [
+            36.920597,
+            -76.145339
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "173",
+        "name": "Naval Station Norfolk",
+        "coords": [
+            36.930683,
+            -76.289625
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "174",
+        "name": "Naval Air Station Whidbey Island",
+        "coords": [
+            48.342502,
+            -122.6651
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "175",
+        "name": "Naval Base Kitsap - Bangor",
+        "coords": [
+            47.703948,
+            -122.723367
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "176",
+        "name": "Naval Base Kitsap - Bremerton",
+        "coords": [
+            47.563091,
+            -122.65377
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "177",
+        "name": "Naval Station Everett",
+        "coords": [
+            47.990266,
+            -122.217321
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "178",
+        "name": "Naval Support Activity Bahrain",
+        "coords": [
+            26.0275,
+            50.55
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "179",
+        "name": "Naval Station Guantanamo Bay",
+        "coords": [
+            19.902668,
+            -75.100158
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "180",
+        "name": "US Naval Support Activity Souda Bay",
+        "coords": [
+            35.487726,
+            24.074157
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "181",
+        "name": "Naval Air Station Sigonella",
+        "coords": [
+            37.408142,
+            14.911237
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "182",
+        "name": "Naval Support Activity Naples",
+        "coords": [
+            40.993214,
+            14.246819
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "183",
+        "name": "Commander Fleet Activities Sasebo",
+        "coords": [
+            33.167794,
+            129.714323
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "184",
+        "name": "Commander Fleet Activities Yokosuka",
+        "coords": [
+            35.283208,
+            139.666005
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "185",
+        "name": "Naval Air Facility Atsugi",
+        "coords": [
+            35.453085,
+            139.434931
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "186",
+        "name": "Commander Fleet Activities Chinhae",
+        "coords": [
+            35.101978,
+            128.758745
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "187",
+        "name": "Navy Region Singapore",
+        "coords": [
+            1.459276,
+            103.830099
+        ]
+    },
+    {
+        "datatype": "navalBase",
+        "ident": "188",
+        "name": "Naval Station Rota",
+        "coords": [
+            36.638765,
+            -6.332028
+        ]
+    }
+]
