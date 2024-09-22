@@ -8,6 +8,7 @@ const initialState: StateStore = {
     firCoords: null,
     basesCoords: [],
     missilesCoords: [],
+    reservationsCoords: [],
     areaCoords: { name: '', area: [], country: '', rocket: '', id: 0 },
     isOpenModal: false
 };
@@ -54,6 +55,15 @@ export const useStore = create<StateStore & ActionsStore>()((set, get) => ({
     deleteMissileCoord: (payload) => {
         set({ missilesCoords: get().missilesCoords.filter(obj => obj.ident !== payload) });
     },
+
+    setReservationCoords: (payload) => {
+        const prevReservationsCoords = get().reservationsCoords;
+        set({ reservationsCoords: [...prevReservationsCoords, payload] });
+    },
+    deleteReservationCoord: (payload) => {
+        set({ reservationsCoords: get().reservationsCoords.filter(obj => obj.id !== payload) });
+    },
+
     setAreaCoords: (payload) => {
         set({ areaCoords: payload });
     },

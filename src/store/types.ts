@@ -18,6 +18,7 @@ export type StateStore = {
     firCoords: IFir | null;
     basesCoords: IBase[];
     missilesCoords: IMissile[];
+    reservationsCoords: IArea[];
     areaCoords: IArea;
     isOpenModal: boolean;
 }
@@ -37,6 +38,9 @@ export type ActionsStore = {
     setMissileCoords: (payload: IMissile) => void;
     setMissiles: (payload: IMissile[]) => void;
     deleteMissileCoord: (payload: string) => void;
+
+    setReservationCoords: (payload: IArea) => void;
+    deleteReservationCoord: (payload: number) => void;
 
     setIsOpenModal: (payload: boolean) => void;
     reset: () => void;

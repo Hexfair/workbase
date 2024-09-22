@@ -52,4 +52,5 @@ export const baseNavyIcon = L.icon({
 export const purpleOptions = { color: 'purple', weight: 2 };
 export const blueOptions = { color: '#8e04ff' };
 export const areaOptions = { color: '#0057a3', fillColor: '#0057a3', weight: 2 };
+export const reservationOptions = { color: '#303F9F', fillColor: '#6775d1', weight: 2 };
 export const difOptions = { color: 'white', fillColor: 'white', weight: 2 };

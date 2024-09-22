@@ -4,7 +4,7 @@ import styles from './MapLeaflet.module.scss';
 import 'leaflet.offline';
 import 'leaflet/dist/leaflet.css';
 import Recenter from './Plugins/MapRecenter';
-import { difOptions, areaOptions, blueOptions, circleIcon, purpleOptions, circleIconBlue, circleSmallIcon, baseArmyIcon, baseAirforceIcon, baseNavyIcon } from './MapLeaflet.options';
+import { difOptions, areaOptions, blueOptions, circleIcon, purpleOptions, circleIconBlue, circleSmallIcon, baseArmyIcon, baseAirforceIcon, baseNavyIcon, reservationOptions } from './MapLeaflet.options';
 import ClearIcon from '../../assets/icon/clear.svg?react';
 import CursorCoordinates from './Plugins/CursorCoordinates/CursorCoordinates';
 import LeafletRuler from './Plugins/PolylineMeasure/LeafletRuler';
@@ -22,7 +22,7 @@ const MAP_CENTER = { lat: 22.0, lng: -80.00 };
 //===========================================================================================================
 
 export default function MapLeaflet() {
-    const { fligthCoords, notamCoords, firCoords, areaCoords, basesCoords, missilesCoords, reset } = useStore();
+    const { fligthCoords, notamCoords, firCoords, areaCoords, basesCoords, missilesCoords, reservationsCoords, reset } = useStore();
     const [dataIntersect, setDataIntersect] = React.useState<Coordinate[][] | null>(null);
     const [viewCoords, setViewCoords] = React.useState<Coordinate[]>([[51, -126], [51, -33], [-14, -33], [-14, -126], [51, -126]]);
 
@@ -82,7 +82,7 @@ export default function MapLeaflet() {
                         position={[obj.coords[0], obj.coords[1]]}
                         icon={(index === 0) || (index === fligthCoords.length - 1) ? circleIcon : circleIconBlue}
                     >
-                        <Popup children={`Координаты: ${obj.coords[0]}, ${obj.coords[1]}`} />
+                        <Popup children={`Точка: ${obj.ident}`} />
                     </Marker>)}
 
                 {areaCoords.area.length > 0 &&
@@ -108,6 +108,36 @@ export default function MapLeaflet() {
                                     <Tooltip sticky>{areaCoords.name}</Tooltip>
                                 </Polygon>)
                         }
+                    })}
+
+                {reservationsCoords.length > 0 &&
+                    reservationsCoords.map((it, index) => {
+                        return (
+                            it.area.map(item => {
+                                if (item.length === 1) {
+                                    return (
+                                        <Circle
+                                            key={`${index}${item[0]}`}
+                                            center={[item[0][0], item[0][1]]}
+                                            radius={item[0][2]}
+                                            pathOptions={reservationOptions}
+                                        >
+                                            <Tooltip sticky>{it.name}</Tooltip>
+                                        </Circle>
+                                    )
+                                } else {
+                                    return (
+                                        <Polygon
+                                            key={`${index}${item[0]}`}
+                                            pathOptions={reservationOptions}
+                                            positions={item.map(obj => obj)}
+                                        >
+                                            <Tooltip sticky>{it.name}</Tooltip>
+                                        </Polygon>)
+                                }
+
+                            })
+                        )
                     })}
 
                 {dataIntersect &&

@@ -12,7 +12,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
 
-const icaoPoints = JSON.parse(fs.readFileSync(path.join(__dirname, 'dist', 'data', 'icao.json')));
+const icaoPoints = JSON.parse(fs.readFileSync(path.join(__dirname, 'public', 'data', 'icao.json')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "dist", "index.html"));
@@ -39,7 +39,7 @@ app.get('/missiles', (req, res) => {
 });
 
 app.post('/icao', (req, res) => {
-    const point = icaoPoints.find(obj => obj.ident === req.body.icao);
+    const point = icaoPoints.find(obj => obj.ident.toLowerCase() === req.body.icao.toLowerCase());
     res.header("Content-Type", 'application/json');
     if (point) {
         return res.status(200).json({ point });
@@ -91,6 +91,6 @@ app.delete('/', (req, res) => {
     });
 });
 
-app.listen(8000, () => {
+app.listen(5050, () => {
     console.log("server started on port 5050");
 });
